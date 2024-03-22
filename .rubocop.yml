@@ -1,0 +1,33 @@
+require:
+  - rubocop-performance
+  - rubocop-rspec
+  - rubocop-rails
+  - rubocop-faker
+  - rubocop-factory_bot
+
+AllCops:
+  TargetRubyVersion: 3.1.3
+  TargetRailsVersion: 7.1.3
+  NewCops: enable
+
+# ===================== Style ====================
+Style/Documentation:
+  Enabled: true
+  Exclude:
+    - config/**/*
+    - db/**/*
+    - app/models/application_record.rb
+    - app/helpers/application_helper.rb
+    - app/mailers/application_mailer.rb
+    - app/models/application_record.rb
+# ===================== Metrics ====================
+Metrics/MethodLength:
+  Enabled: true
+  Exclude:
+    - db/**/*
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - db/**/*
+    - config/**/*
+    - app/admin/**

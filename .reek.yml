@@ -1,0 +1,16 @@
+---
+detectors:
+  IrresponsibleModule:
+    exclude:
+      - 'HappyParentsUa::Application'
+      - 'ApplicationHelper'
+      - 'ApplicationController'
+      - 'ApplicationCable::Channel'
+      - 'ApplicationCable::Connection'
+      - 'ApplicationJob'
+      - 'ApplicationMailer'
+      - 'ApplicationRecord'
+  NestedIterators:
+    max_allowed_nesting: 2
+exclude_paths:
+  - db/**/*
