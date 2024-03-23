@@ -1,0 +1,9 @@
+PreCommit:
+ RuboCop:
+   enabled: true
+ Reek:
+   enabled: true
+ Brakeman:
+   enabled: true
+ BundleAudit:
+   enabled: true
