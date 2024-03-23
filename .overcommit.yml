@@ -1,9 +1,12 @@
 PreCommit:
  RuboCop:
    enabled: true
+   command: ['bundle', 'exec', 'rubocop', '--parallel']
  Reek:
    enabled: true
  Brakeman:
    enabled: true
  BundleAudit:
+   enabled: true
+ RSpec:
    enabled: true
