@@ -29,6 +29,7 @@ gem 'importmap-rails'
 #   [upgrade guide] https://github.com/heartcombo/devise/wiki/How-To:-Upgrade-to-Devise-4.9.0-%5BHotwire-Turbo-integration%5D
 gem 'turbo-rails'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem 'sass-rails', '~> 6.0'
 gem 'stimulus-rails'
 
 # Use Redis adapter to run Action Cable in production
@@ -69,6 +70,7 @@ group :test do
 end
 
 group :development do
+  gem 'annotate', '~> 3.2'
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'overcommit', '~> 0.63.0'
   gem 'web-console'

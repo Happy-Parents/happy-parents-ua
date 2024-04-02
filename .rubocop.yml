@@ -31,3 +31,9 @@ Metrics/BlockLength:
     - db/**/*
     - config/**/*
     - app/admin/**
+    - lib/tasks/auto_annotate_models.rake
+# ===================== Metrics ====================
+Rails/RakeEnvironment:
+  Enabled: true
+  Exclude:
+    - /lib/tasks/auto_annotate_models.rake
