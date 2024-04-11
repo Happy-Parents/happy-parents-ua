@@ -17,6 +17,7 @@ gem 'activeadmin', '~> 3.2'
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise', '~> 4.9', '>= 4.9.3'
 gem 'money-rails', '~> 1.15'
+gem 'pundit', '~> 2.3', '>= 2.3.1'
 
 # ASSETS
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
@@ -51,21 +52,20 @@ group :development, :test do
   gem 'bundler-audit', '~> 0.9.1'
   gem 'factory_bot_rails', '~> 6.4', '>= 6.4.3'
   gem 'ffaker', '~> 2.23'
+  gem 'pry-rails', '~> 0.3.9'
   gem 'reek', '~> 6.3'
+  gem 'rspec-rails', '~> 6.1', '>= 6.1.2'
   gem 'rubocop', '~> 1.62', '>= 1.62.1'
   gem 'rubocop-factory_bot', '~> 2.25', '>= 2.25.1'
   gem 'rubocop-faker', '~> 1.1'
   gem 'rubocop-performance', '~> 1.20', '>= 1.20.2'
   gem 'rubocop-rails', '~> 2.24'
   gem 'rubocop-rspec', '~> 2.27', '>= 2.27.1'
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'debug', platforms: %i[mri windows]
 end
 
 group :test do
   gem 'fuubar', '~> 2.5', '>= 2.5.1'
   gem 'pundit-matchers', '~> 3.1', '>= 3.1.2'
-  gem 'rspec-rails', '~> 6.1', '>= 6.1.2'
   gem 'shoulda-matchers', '~> 6.2'
 end
 

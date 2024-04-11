@@ -6,6 +6,7 @@ if Rails.env.development?
   Admin.create(
     email: admin_data[:email],
     password: admin_data[:password],
-    password_confirmation: admin_data[:password]
+    password_confirmation: admin_data[:password],
+    role: admin_data[:role]
   )
 end

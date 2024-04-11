@@ -19,16 +19,19 @@
 #  index_admins_on_email                 (email) UNIQUE
 #  index_admins_on_reset_password_token  (reset_password_token) UNIQUE
 #
-class Admin < ApplicationRecord
-  include RanSackableAttributable
 
-  devise :database_authenticatable, :recoverable, :rememberable, :validatable
+RSpec.describe Admin do
+  subject(:admin) { build(:admin) }
 
-  validates :role, :password, presence: true
-  validates :email,
-            presence: true,
-            uniqueness: { case_sensitive: false },
-            format: { with: URI::MailTo::EMAIL_REGEXP }
+  describe 'validations' do
+    %i[email role password].map do |attribute|
+      it { is_expected.to validate_presence_of(attribute) }
+    end
+    it { is_expected.to allow_value(FFaker::Internet.email).for(:email) }
+    it { is_expected.not_to allow_value(FFaker::Lorem.word).for(:email) }
 
-  enum role: { superadmin: 0, manager: 1 }
+    it 'defines expected roles' do
+      expect(admin).to define_enum_for(:role).with_values(superadmin: 0, manager: 1)
+    end
+  end
 end

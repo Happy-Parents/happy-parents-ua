@@ -19,16 +19,18 @@
 #  index_admins_on_email                 (email) UNIQUE
 #  index_admins_on_reset_password_token  (reset_password_token) UNIQUE
 #
-class Admin < ApplicationRecord
-  include RanSackableAttributable
+FactoryBot.define do
+  factory :admin do
+    sequence(:email) { |n| "#{FFaker::Internet.unique.email}#{n}" }
+    role { rand(0..1) }
+    password { FFaker::Internet.password }
 
-  devise :database_authenticatable, :recoverable, :rememberable, :validatable
+    trait :with_superadmin_role do
+      role { 0 }
+    end
 
-  validates :role, :password, presence: true
-  validates :email,
-            presence: true,
-            uniqueness: { case_sensitive: false },
-            format: { with: URI::MailTo::EMAIL_REGEXP }
-
-  enum role: { superadmin: 0, manager: 1 }
+    trait :with_manager_role do
+      role { 1 }
+    end
+  end
 end
