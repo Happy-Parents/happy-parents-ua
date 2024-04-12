@@ -7,3 +7,10 @@ updates:
     target-branch: "main"
     reviewers:
       - "kirill-oliinyk"
+    ignore:
+      - dependency-name: "*"
+        versions: ["*"]
+    automerge:
+      branch: main
+      rebase: true
+      ignore_requirement_updates: true
