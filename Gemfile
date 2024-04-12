@@ -60,7 +60,7 @@ group :development, :test do
   gem 'rubocop-faker', '~> 1.1'
   gem 'rubocop-performance', '~> 1.21'
   gem 'rubocop-rails', '~> 2.24'
-  gem 'rubocop-rspec', '~> 2.27', '>= 2.27.1'
+  gem 'rubocop-rspec', '~> 2.29'
 end
 
 group :test do
