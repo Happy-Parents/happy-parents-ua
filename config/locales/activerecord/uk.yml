@@ -1,0 +1,14 @@
+uk:
+  activerecord:
+    models:
+      admin:
+        one: Адмін
+        other: Адміни
+    attributes:
+      admin:
+        role: роль
+    enums:
+      admin:
+        role:
+          superadmin: Адмінітратор
+          manager: Менеджер
