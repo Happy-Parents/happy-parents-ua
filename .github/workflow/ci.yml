@@ -3,32 +3,38 @@ name: CI
 on:
   push:
     branches: ['main']
-  pull_request:
+  pull_request_target:
     branches: ['main']
+
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}
 
 jobs:
   rspec:
     runs-on: ubuntu-20.04
     services:
       db:
-        image: postgres:16
-        ports: ['5432:5432']
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-        env:
-          POSTGRES_HOST: localhost
-          POSTGRES_DB: happy_parents_ua_test
-          POSTGRES_USER: rails
-          POSTGRES_PASSWORD: password
+        image: postgres:16-alpine
+        ports:
+          - '5432:5432'
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        healthcheck:
+          test: ["CMD", "pg_isready", "-q", "-d", "happy_parents_ua_test", "-U", "rails"]
+          interval: 10s
+          timeout: 5s
+          retries: 5
       redis:
         image: redis:alpine
-        ports: [ "6379:6379" ]
-        options: --entrypoint redis-server
+        ports:
+          - '6379:6379'
+
     env:
       RAILS_ENV: test
-      DATABASE_URL: "postgres://rails:password@localhost:5432/happy_parents_ua_test"
+      DATABASE_URL: "postgres://rails:password@db:5432/happy_parents_ua_test"
       REDIS_URL: redis://localhost:6379/0
 
     steps:
@@ -36,7 +42,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
 
