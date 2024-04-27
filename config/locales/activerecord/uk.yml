@@ -1,6 +1,9 @@
 uk:
   activerecord:
     models:
+      manufacturer:
+        one: Виробник
+        other: Виробники
       admin:
         one: Адмін
         other: Адміни
@@ -8,6 +11,9 @@ uk:
         one: Країна
         other: Країни
     attributes:
+      manufacturer:
+        country: Країна
+        name: назва
       admin:
         role: роль
       country:

@@ -7,9 +7,11 @@
 #  id   :bigint           not null, primary key
 #  name :string
 #
+# Represents manufacturer country entity
 class Country < ApplicationRecord
   include RanSackableAttributable
   extend Mobility
+  has_many :manufacturers, dependent: :nullify
   translates :name, type: :string
 
   validates :name_uk,

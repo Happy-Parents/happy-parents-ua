@@ -10,6 +10,10 @@
 RSpec.describe Country do
   subject(:supplier) { build(:country) }
 
+  describe 'associations' do
+    it { is_expected.to have_many(:manufacturers) }
+  end
+
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name_uk) }
     it { is_expected.to validate_presence_of(:name_ru) }
