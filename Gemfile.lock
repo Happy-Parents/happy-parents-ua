@@ -221,6 +221,9 @@ GEM
     mobility (1.2.9)
       i18n (>= 0.6.10, < 2)
       request_store (~> 1.0)
+    mobility-ransack (1.2.2)
+      mobility (>= 1.0.1, < 2.0)
+      ransack (>= 1.8.0, < 5.0)
     monetize (1.13.0)
       money (~> 6.12)
     money (6.19.0)
@@ -464,6 +467,7 @@ DEPENDENCIES
   fuubar (~> 2.5, >= 2.5.1)
   importmap-rails
   mobility (~> 1.2, >= 1.2.9)
+  mobility-ransack (~> 1.2, >= 1.2.2)
   money-rails (~> 1.15)
   overcommit (~> 0.63.0)
   pg (~> 1.1)

@@ -4,9 +4,17 @@ uk:
       admin:
         one: Адмін
         other: Адміни
+      country:
+        one: Країна
+        other: Країни
     attributes:
       admin:
         role: роль
+      country:
+        name: назва
+        name_uk: Назва українською
+        name_ru: назва
+         російською
     enums:
       admin:
         role:

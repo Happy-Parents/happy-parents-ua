@@ -5,6 +5,8 @@ Mobility.configure do
   plugins do
     backend :key_value
     active_record
+    ransack
+    locale_accessors
     reader
     writer
   end
