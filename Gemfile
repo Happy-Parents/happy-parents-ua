@@ -16,6 +16,9 @@ gem 'tzinfo-data', platforms: %i[windows jruby]
 gem 'activeadmin', '~> 3.2'
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise', '~> 4.9'
+gem 'devise-i18n', '~> 1.12'
+gem 'mobility', '~> 1.2', '>= 1.2.9'
+gem 'mobility-ransack', '~> 1.2', '>= 1.2.2'
 gem 'money-rails', '~> 1.15'
 gem 'pundit', '~> 2.3', '>= 2.3.1'
 
