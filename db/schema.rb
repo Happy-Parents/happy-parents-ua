@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_12_143520) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_27_084646) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,6 +43,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_12_143520) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "manufacturers", force: :cascade do |t|
+    t.bigint "country_id"
+    t.string "name", null: false
+    t.index ["country_id"], name: "index_manufacturers_on_country_id"
+    t.index ["name"], name: "index_manufacturers_on_name", unique: true
   end
 
   create_table "mobility_string_translations", force: :cascade do |t|

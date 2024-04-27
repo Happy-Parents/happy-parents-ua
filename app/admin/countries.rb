@@ -18,6 +18,14 @@ ActiveAdmin.register Country do
       row :name_uk
       row :name_ru
     end
+
+    panel 'Manufacturers' do
+      table_for country.manufacturers do
+        column 'Name' do |manufacturer|
+          link_to manufacturer.name, admin_manufacturer_path(manufacturer)
+        end
+      end
+    end
   end
 
   form do |f|
