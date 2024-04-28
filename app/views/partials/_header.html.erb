@@ -1,0 +1,3 @@
+<% I18n.available_locales.each do |locale| %>
+<%= button_to t(locale), set_locale_path(locale: locale) %>
+<% end %>
