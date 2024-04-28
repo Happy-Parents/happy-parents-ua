@@ -18,6 +18,8 @@ class Country < ApplicationRecord
             :name_ru,
             presence: true
 
+  # TODO: implement custom uniq valiadtion:
+  # https://github.com/shioyama/mobility/issues/20
   # I18n.available_locales.each do |locale|
   #   validates :"name_#{locale}", presence: true, uniqueness: true
   # end
