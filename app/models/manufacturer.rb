@@ -6,14 +6,15 @@
 #
 #  id         :bigint           not null, primary key
 #  name       :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #  country_id :bigint
 #
 # Indexes
 #
-#  index_manufacturers_on_country_id  (country_id)
-#  index_manufacturers_on_name        (name) UNIQUE
+#  index_manufacturers_on_country_id           (country_id)
+#  index_manufacturers_on_name_and_country_id  (name,country_id) UNIQUE
 #
-# Represents product manufacturer entity
 class Manufacturer < ApplicationRecord
   include RanSackableAttributable
 
@@ -22,6 +23,11 @@ class Manufacturer < ApplicationRecord
     ['country']
   end
   belongs_to :country
+  has_many :trade_marks, dependent: :nullify
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true,
+                   uniqueness: {
+                     scope: :country_id,
+                     case_sensitive: false
+                   }
 end

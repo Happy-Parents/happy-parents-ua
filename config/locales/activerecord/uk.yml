@@ -1,6 +1,9 @@
 uk:
   activerecord:
     models:
+      trade_mark:
+        one: Торгівельна марка
+        other: Торгівельні марки
       manufacturer:
         one: Виробник
         other: Виробники
@@ -16,6 +19,9 @@ uk:
         name: назва
       admin:
         role: роль
+      trade_mark:
+        name: назва
+        manufacturer: виробник
       country:
         name: назва
         name_uk: Назва українською

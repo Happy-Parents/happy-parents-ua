@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_27_084646) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_27_191115) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,8 +48,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_084646) do
   create_table "manufacturers", force: :cascade do |t|
     t.bigint "country_id"
     t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_manufacturers_on_country_id"
-    t.index ["name"], name: "index_manufacturers_on_name", unique: true
+    t.index ["name", "country_id"], name: "index_manufacturers_on_name_and_country_id", unique: true
   end
 
   create_table "mobility_string_translations", force: :cascade do |t|
@@ -75,6 +77,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_084646) do
     t.datetime "updated_at", null: false
     t.index ["translatable_id", "translatable_type", "key"], name: "index_mobility_text_translations_on_translatable_attribute"
     t.index ["translatable_id", "translatable_type", "locale", "key"], name: "index_mobility_text_translations_on_keys", unique: true
+  end
+
+  create_table "trade_marks", force: :cascade do |t|
+    t.bigint "manufacturer_id"
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["manufacturer_id"], name: "index_trade_marks_on_manufacturer_id"
+    t.index ["name", "manufacturer_id"], name: "index_trade_marks_on_name_and_manufacturer_id", unique: true
   end
 
 end
