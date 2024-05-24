@@ -324,7 +324,7 @@ GEM
       i18n
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
-    redis-client (0.21.1)
+    redis-client (0.22.1)
       connection_pool
     reek (6.3.0)
       dry-schema (~> 1.13.0)
@@ -406,7 +406,7 @@ GEM
       tilt
     shoulda-matchers (6.2.0)
       activesupport (>= 5.2.0)
-    sidekiq (7.2.2)
+    sidekiq (7.2.4)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
@@ -487,7 +487,7 @@ DEPENDENCIES
   rubocop-rspec (~> 2.29)
   sass-rails (~> 6.0)
   shoulda-matchers (~> 6.2)
-  sidekiq (~> 7.2, >= 7.2.2)
+  sidekiq (~> 7.2)
   sprockets-rails
   stimulus-rails
   turbo-rails
