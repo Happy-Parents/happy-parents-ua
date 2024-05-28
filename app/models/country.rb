@@ -7,6 +7,7 @@
 #  id   :bigint           not null, primary key
 #  name :string
 #
+
 # Represents manufacturer country entity
 class Country < ApplicationRecord
   include RanSackableAttributable

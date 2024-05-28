@@ -19,6 +19,7 @@
 #  index_admins_on_email                 (email) UNIQUE
 #  index_admins_on_reset_password_token  (reset_password_token) UNIQUE
 #
+
 # Represents application administrator entity
 class Admin < ApplicationRecord
   include RanSackableAttributable
