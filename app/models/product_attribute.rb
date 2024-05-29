@@ -25,6 +25,8 @@
 #  index_product_attributes_on_trade_mark_id         (trade_mark_id)
 #
 class ProductAttribute < ApplicationRecord
+  monetize :price_cents
+
   belongs_to :product_attributable, polymorphic: true
   belongs_to :manufacturer, optional: true
   belongs_to :trade_mark, optional: true

@@ -15,9 +15,7 @@ require 'rails_helper'
 
 RSpec.describe Book do
   describe 'associations' do
-    it 'has a polymorphic association with product_attributes' do
-      expect(described_class.reflect_on_association(:product_attributes).options[:as]).to eq(:product_attributable)
-    end
+    it { is_expected.to have_one(:product_attribute) }
   end
 
   describe 'validations' do

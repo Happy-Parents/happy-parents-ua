@@ -26,9 +26,9 @@
 #
 FactoryBot.define do
   factory :product_attribute do
-    price_cents { rand(1..1000) }
-    whearhouse_count { rand(1..1000) }
+    price_cents { rand(100..1000) }
+    whearhouse_count { rand(1..10_000) }
     drop_shipping_available { [true, false].sample }
-    sequence(:slug) { |n| "FFaker::Lorem.word#{n}" }
+    sequence(:slug) { |n| "#{FFaker::Lorem.word}-#{n}" }
   end
 end
