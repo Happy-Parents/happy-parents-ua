@@ -62,7 +62,7 @@ group :development, :test do
   gem 'rubocop-factory_bot', '~> 2.25', '>= 2.25.1'
   gem 'rubocop-faker', '~> 1.1'
   gem 'rubocop-performance', '~> 1.21'
-  gem 'rubocop-rails', '~> 2.24'
+  gem 'rubocop-rails', '~> 2.25'
   gem 'rubocop-rspec', '~> 2.29'
 end
 
