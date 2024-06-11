@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_27_183243) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_27_191115) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,21 +41,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_27_183243) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "books", force: :cascade do |t|
-    t.integer "cover_type", null: false
-    t.integer "pages_count", null: false
-    t.integer "language", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "countries", force: :cascade do |t|
     t.string "name"
-  end
-
-  create_table "customers", id: false, force: :cascade do |t|
-    t.integer "id"
-    t.string "name", limit: 50
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "manufacturers", force: :cascade do |t|
@@ -90,30 +79,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_27_183243) do
     t.datetime "updated_at", null: false
     t.index ["translatable_id", "translatable_type", "key"], name: "index_mobility_text_translations_on_translatable_attribute"
     t.index ["translatable_id", "translatable_type", "locale", "key"], name: "index_mobility_text_translations_on_keys", unique: true
-  end
-
-  create_table "orders", id: false, force: :cascade do |t|
-    t.integer "id"
-    t.integer "customer_id"
-    t.integer "amount"
-  end
-
-  create_table "product_attributes", force: :cascade do |t|
-    t.string "product_attributable_type"
-    t.bigint "product_attributable_id"
-    t.bigint "manufacturer_id"
-    t.bigint "trade_mark_id"
-    t.string "title"
-    t.string "slug", null: false
-    t.integer "price_cents", null: false
-    t.boolean "drop_shipping_available", default: false, null: false
-    t.integer "whearhouse_count", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["manufacturer_id"], name: "index_product_attributes_on_manufacturer_id"
-    t.index ["product_attributable_type", "product_attributable_id"], name: "index_product_attributes_on_product_attributable"
-    t.index ["slug"], name: "index_product_attributes_on_slug", unique: true
-    t.index ["trade_mark_id"], name: "index_product_attributes_on_trade_mark_id"
   end
 
   create_table "trade_marks", force: :cascade do |t|

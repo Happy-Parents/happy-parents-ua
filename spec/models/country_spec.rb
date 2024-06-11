@@ -4,8 +4,10 @@
 #
 # Table name: countries
 #
-#  id   :bigint           not null, primary key
-#  name :string
+#  id         :bigint           not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 RSpec.describe Country do
   subject(:supplier) { build(:country) }
