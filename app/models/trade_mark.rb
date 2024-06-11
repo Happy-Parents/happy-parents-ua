@@ -23,7 +23,7 @@ class TradeMark < ApplicationRecord
     ['manufacturer']
   end
 
-  belongs_to :manufacturer
+  belongs_to :manufacturer, optional: true
   validates :name, presence: true,
                    uniqueness: {
                      scope: :manufacturer_id,
