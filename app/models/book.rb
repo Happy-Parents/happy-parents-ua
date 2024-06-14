@@ -30,7 +30,7 @@ class Book < ApplicationRecord
 
   belongs_to :manufacturer, optional: true
 
-  translates :name, type: :string
+  translates :name, ransack: false, type: :string
   monetize :price_cents
 
   # TODO: add uniqueness validation for name_uk & name_ru

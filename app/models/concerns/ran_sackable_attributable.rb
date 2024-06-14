@@ -6,9 +6,14 @@
 # Try to remove this after ActiveAdmin update
 module RanSackableAttributable
   extend ActiveSupport::Concern
-  class_methods do
-    def ransackable_attributes(_auth_object = nil)
-      columns.map(&:name)
+
+  included do
+    def self.ransackable_attributes(_auth_object = nil)
+      authorizable_ransackable_attributes
+    end
+
+    def self.ransackable_associations(_auth_object = nil)
+      authorizable_ransackable_associations
     end
   end
 end

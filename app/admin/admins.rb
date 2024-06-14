@@ -15,8 +15,7 @@ ActiveAdmin.register Admin do
 
   form do |f|
     f.inputs do
-      f.input :role, as: :select,
-                     collection: Admin.roles.map { |role, _| [I18n.t("activerecord.enums.admin.role.#{role}"), role] }
+      f.input :role, collection: Admin.roles.map { |role, _| [I18n.t("activerecord.enums.admin.role.#{role}"), role] }
       f.input :email
       f.input :password
       f.input :password_confirmation

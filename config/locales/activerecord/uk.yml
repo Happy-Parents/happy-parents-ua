@@ -4,6 +4,9 @@ uk:
       trade_mark:
         one: Торгівельна марка
         other: Торгівельні марки
+      book:
+        one: Книга
+        other: Книги
       manufacturer:
         one: Виробник
         other: Виробники
@@ -14,6 +17,20 @@ uk:
         one: Країна
         other: Країни
     attributes:
+      book:
+        manufacturer: Видавництво
+        name_uk: Назва українською
+        name_ru: Назва російською
+        slug: адреса веб-сторінки
+        cover_type: тип обкладинки
+        language: мова
+        pages_count: кількість сторінок
+        authors: автори
+        price_cents: ціна
+        price: цна(грн,коп)
+        whearhouse_count: залишки на складі
+        drop_shipping_available: дроп-шипінг
+        published: опубліковано
       manufacturer:
         country: Країна
         name: назва
@@ -32,3 +49,11 @@ uk:
         role:
           superadmin: Адмінітратор
           manager: Менеджер
+      book:
+        language:
+          uk: українська
+          eng: англійська
+          ru: російська
+        cover_type:
+          hard: жорстка
+          soft: мʼяка
