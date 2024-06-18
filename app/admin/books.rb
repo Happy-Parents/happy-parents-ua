@@ -17,7 +17,9 @@ ActiveAdmin.register Book do
   index download_links: false do
     selectable_column
     column :name_uk
-    column :language
+    column :language do |book|
+      I18n.t("activerecord.enums.book.language.#{book.language}")
+    end
     column :manufacturer
     column :whearhouse_count
     column :price_cents do |book|
@@ -25,7 +27,10 @@ ActiveAdmin.register Book do
     end
     column :drop_shipping_available
     column :published
-    actions
+    actions default: true do |book|
+      link_to t('active_admin.defaults.actions.show_in_app'), book_path(id: book.id), target: '_blank',
+                                                                                      rel: 'noopener'
+    end
   end
 
   show do
@@ -35,8 +40,12 @@ ActiveAdmin.register Book do
       row :name_uk
       row :name_ru
       row :slug
-      row :cover_type
-      row :language
+      row :cover_type do |book|
+        I18n.t("activerecord.enums.book.cover_type.#{book.cover_type}")
+      end
+      row :language do |book|
+        I18n.t("activerecord.enums.book.language.#{book.language}")
+      end
       row :pages_count
       row :authors
       row :price do |book|
@@ -48,12 +57,21 @@ ActiveAdmin.register Book do
     end
   end
 
+  action_item :view, only: :show do
+    link_to t('active_admin.defaults.actions.show_in_app'), book_path(id: book.id), target: '_blank',
+                                                                                    rel: 'noopener'
+  end
+
   filter :manufacturer
   filter :name_uk
   filter :name_ru
   filter :slug
-  filter :cover_type
-  filter :language
+  filter :cover_type, as: :select, collection: Book.cover_types.keys.map { |k|
+                                                 [I18n.t("activerecord.enums.book.cover_type.#{k}"), k]
+                                               }
+  filter :language, as: :select, collection: Book.languages.keys.map { |k|
+                                               [I18n.t("activerecord.enums.book.language.#{k}"), k]
+                                             }
   filter :pages_count
   filter :authors
   filter :price_cents
@@ -72,6 +90,7 @@ ActiveAdmin.register Book do
           f.input :price
           f.input :whearhouse_count
           f.input :drop_shipping_available
+          f.input :published
         end
       end
 
@@ -81,13 +100,12 @@ ActiveAdmin.register Book do
           f.input :authors
           f.input :pages_count
 
-          f.input :cover_type, collection: Book.cover_types.map do |type, _|
-            [I18n.t("activerecord.enums.book.cover_type.#{type}"), type]
-          end
-
-          f.input :language, collection: Book.languages.map do |lang, _|
-            [I18n.t("activerecord.enums.book.language.#{lang}"), lang]
-          end
+          f.input :cover_type, as: :select, collection: Book.cover_types.keys.map { |k|
+                                                          [I18n.t("activerecord.enums.book.cover_type.#{k}"), k]
+                                                        }
+          f.input :language, as: :select, collection: Book.languages.keys.map { |k|
+                                                        [I18n.t("activerecord.enums.book.language.#{k}"), k]
+                                                      }
         end
       end
 
@@ -101,8 +119,13 @@ ActiveAdmin.register Book do
   end
 
   controller do
+    # def find_resource
+    #   scoped_collection.friendly.find(params[:id])
+    # end
+
     # NOTE: works with kind of bug when submitting not a number value
     def update
+      # TODO: move this logic to service object
       return unless params.dig(:book, :price)
 
       params[:book][:price_cents] = params.require(:book).require(:price).delete(',').to_i

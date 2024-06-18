@@ -1,0 +1,5 @@
+uk:
+  active_admin:
+    defaults:
+      actions:
+        show_in_app: Відкрити на сайті

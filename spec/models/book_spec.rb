@@ -27,8 +27,6 @@
 require 'rails_helper'
 
 RSpec.describe Book do
-  subject(:book) { build(:book) }
-
   describe 'associations' do
     it { is_expected.to belong_to(:manufacturer).optional }
   end
@@ -46,6 +44,7 @@ RSpec.describe Book do
     ].each do |attribute|
       it { is_expected.to validate_presence_of(attribute) }
     end
+    it { is_expected.to validate_presence_of(:slug) }
     it { is_expected.to validate_numericality_of(:price_cents).is_greater_than(0) }
     it { is_expected.to validate_numericality_of(:whearhouse_count).is_greater_than_or_equal_to(0) }
     it { is_expected.to define_enum_for(:language).with_values(%i[uk eng ru]) }
