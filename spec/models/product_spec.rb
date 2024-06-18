@@ -2,15 +2,12 @@
 
 # == Schema Information
 #
-# Table name: books
+# Table name: products
 #
 #  id                      :bigint           not null, primary key
-#  authors                 :string
-#  cover_type              :integer          not null
 #  drop_shipping_available :boolean          default(FALSE), not null
-#  language                :integer          not null
+#  inventory_number        :string           not null
 #  name                    :string
-#  pages_count             :integer          not null
 #  price_cents             :integer          not null
 #  published               :boolean          default(FALSE), not null
 #  slug                    :string           not null
@@ -21,11 +18,14 @@
 #
 # Indexes
 #
-#  index_books_on_manufacturer_id  (manufacturer_id)
-#  index_books_on_slug             (slug) UNIQUE
+#  index_products_on_inventory_number  (inventory_number) UNIQUE
+#  index_products_on_manufacturer_id   (manufacturer_id)
+#  index_products_on_slug              (slug) UNIQUE
+#
+require 'rails_helper'
 
-RSpec.describe Book do
-  subject(:book) { build(:book) }
+RSpec.describe Product do
+  subject(:product) { build(:product) }
 
   describe 'associations' do
     it { is_expected.to belong_to(:manufacturer).optional }
@@ -35,19 +35,16 @@ RSpec.describe Book do
     %i[
       name_uk
       name_ru
-      cover_type
-      language
-      pages_count
       slug
       price_cents
       whearhouse_count
+      inventory_number
     ].each do |attribute|
       it { is_expected.to validate_presence_of(attribute) }
     end
     it { is_expected.to validate_uniqueness_of(:slug).case_insensitive }
+    it { is_expected.to validate_uniqueness_of(:inventory_number).case_insensitive }
     it { is_expected.to validate_numericality_of(:price_cents).is_greater_than(0) }
     it { is_expected.to validate_numericality_of(:whearhouse_count).is_greater_than_or_equal_to(0) }
-    it { is_expected.to define_enum_for(:language).with_values(%i[uk eng ru]) }
-    it { is_expected.to define_enum_for(:cover_type).with_values(%i[hard soft]) }
   end
 end
