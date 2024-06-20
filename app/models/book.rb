@@ -20,6 +20,18 @@ class Book < ApplicationRecord
 
   belongs_to :product
 
+  delegate :drop_shipping_available,
+           :inventory_number,
+           :name_uk,
+           :name_ru,
+           :name,
+           :price,
+           :published,
+           :slug,
+           :whearhouse_count,
+           :manufacturer,
+           to: :product
+
   validates :cover_type,
             :language,
             :pages_count,
