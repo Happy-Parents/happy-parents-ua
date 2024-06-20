@@ -11,10 +11,15 @@
 #  pages_count :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  product_id  :bigint
 #
 
 RSpec.describe Book do
   subject(:book) { build(:book) }
+
+  describe 'associations' do
+    it { is_expected.to belong_to(:product) }
+  end
 
   describe 'validations' do
     %i[cover_type language pages_count].each do |attribute|

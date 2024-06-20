@@ -27,6 +27,7 @@ class Product < ApplicationRecord
   extend Mobility
 
   belongs_to :manufacturer, optional: true
+  has_many :books, dependent: :destroy
 
   translates :name, ransack: false, type: :string
   monetize :price_cents

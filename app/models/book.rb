@@ -11,9 +11,14 @@
 #  pages_count :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  product_id  :bigint
 #
+
+# Represents Book specific attributes that together with product entity creates Book entity
 class Book < ApplicationRecord
   include RanSackableAttributable
+
+  belongs_to :product
 
   validates :cover_type,
             :language,
