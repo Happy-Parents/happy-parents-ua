@@ -31,6 +31,7 @@ class Product < ApplicationRecord
   translates :name, ransack: false, type: :string
   monetize :price_cents
 
+  # TODO: add uniqueness validation for name_uk & name_ru
   validates :name_uk,
             :name_ru,
             presence: true

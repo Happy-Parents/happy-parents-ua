@@ -21,7 +21,7 @@ RSpec.describe Manufacturer do
   describe 'associations' do
     it { is_expected.to belong_to(:country) }
     it { is_expected.to have_many(:trade_marks) }
-    it { is_expected.to have_many(:books) }
+    it { is_expected.to have_many(:products) }
   end
 
   describe 'validations' do
