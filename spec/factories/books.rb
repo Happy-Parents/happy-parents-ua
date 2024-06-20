@@ -16,6 +16,7 @@
 FactoryBot.define do
   factory :book do
     product
+    authors { FFaker::Lorem.words(2).map(&:capitalize).join(', ') }
     cover_type { [0, 1].sample }
     language { [0, 1, 2].sample }
     pages_count { rand(0..100) }
