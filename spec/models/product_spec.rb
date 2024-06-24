@@ -7,7 +7,6 @@
 #  id                      :bigint           not null, primary key
 #  drop_shipping_available :boolean          default(FALSE), not null
 #  inventory_number        :string           not null
-#  name                    :string
 #  price_cents             :integer          not null
 #  published               :boolean          default(FALSE), not null
 #  slug                    :string           not null
@@ -47,5 +46,24 @@ RSpec.describe Product do
     it { is_expected.to validate_uniqueness_of(:inventory_number).case_insensitive }
     it { is_expected.to validate_numericality_of(:price_cents).is_greater_than(0) }
     it { is_expected.to validate_numericality_of(:whearhouse_count).is_greater_than_or_equal_to(0) }
+
+    context 'when translated names are not unique' do
+      let(:existing_product) { create(:product) }
+
+      let(:new_product) do
+        build(:product, name_uk: existing_product.name_uk,
+                        name_ru: existing_product.name_ru)
+      end
+
+      it 'object is invalid' do
+        expect(new_product.valid?).to equal(false)
+      end
+
+      it 'object has expected errors' do
+        new_product.valid?
+        expect(new_product.errors.messages).to eq({ name_uk: ['must be unique'],
+                                                    name_ru: ['must be unique'] })
+      end
+    end
   end
 end

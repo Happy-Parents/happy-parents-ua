@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_20_104441) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_21_134602) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -95,7 +95,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_20_104441) do
     t.string "inventory_number", null: false
     t.bigint "manufacturer_id"
     t.integer "price_cents", null: false
-    t.string "name"
     t.string "slug", null: false
     t.integer "whearhouse_count", null: false
     t.boolean "published", default: false, null: false

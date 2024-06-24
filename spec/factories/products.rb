@@ -7,7 +7,6 @@
 #  id                      :bigint           not null, primary key
 #  drop_shipping_available :boolean          default(FALSE), not null
 #  inventory_number        :string           not null
-#  name                    :string
 #  price_cents             :integer          not null
 #  published               :boolean          default(FALSE), not null
 #  slug                    :string           not null

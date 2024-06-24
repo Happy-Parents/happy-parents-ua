@@ -7,7 +7,6 @@
 #  id                      :bigint           not null, primary key
 #  drop_shipping_available :boolean          default(FALSE), not null
 #  inventory_number        :string           not null
-#  name                    :string
 #  price_cents             :integer          not null
 #  published               :boolean          default(FALSE), not null
 #  slug                    :string           not null
@@ -22,6 +21,8 @@
 #  index_products_on_manufacturer_id   (manufacturer_id)
 #  index_products_on_slug              (slug) UNIQUE
 #
+
+# Reprsents basic product entity to be referenced by different product types
 class Product < ApplicationRecord
   include RanSackableAttributable
   extend Mobility
@@ -29,8 +30,10 @@ class Product < ApplicationRecord
   belongs_to :manufacturer, optional: true
   has_many :books, dependent: :destroy
 
-  translates :name, ransack: false, type: :string
+  translates :name, type: :string
   monetize :price_cents
+
+  validate :validate_translated_names
 
   # TODO: add uniqueness validation for name_uk & name_ru
   validates :name_uk,
@@ -45,4 +48,33 @@ class Product < ApplicationRecord
 
   validates :price_cents, presence: true, numericality: { greater_than: 0 }
   validates :whearhouse_count, presence: true, numericality: { greater_than_or_equal_to: 0 }
+
+  accepts_nested_attributes_for :books, allow_destroy: true
+
+  private
+
+  def validate_translated_names
+    I18n.available_locales.each do |locale|
+      I18n.with_locale(locale) do
+        validate_name_presence
+        validate_name_uniqueness(locale)
+      end
+    end
+  end
+
+  def validate_name_presence
+    errors.add(:name, :blank, message: "can't be blank") if name.blank?
+  end
+
+  def validate_name_uniqueness(locale)
+    if Mobility::Backends::ActiveRecord::KeyValue::StringTranslation.exists?(
+      translatable_type: self.class.name,
+      locale: locale.to_s,
+      key: 'name',
+      value: name
+    )
+
+      errors.add(:"name_#{locale}", :uniqueness, message: 'must be unique')
+    end
+  end
 end
