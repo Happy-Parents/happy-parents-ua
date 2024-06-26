@@ -29,8 +29,14 @@ ActiveAdmin.register Book do
     column :whearhouse_count
     column :drop_shipping_available
     column :published
-    # TODO: add show in app link
-    actions
+    actions default: true do |book|
+      link_to t('active_admin.defaults.actions.show_in_app'), book_path(id: book.id), target: '_blank', rel: 'noopener'
+    end
+  end
+
+  action_item :view, only: :show do
+    link_to t('active_admin.defaults.actions.show_in_app'), book_path(id: resource.id), target: '_blank',
+                                                                                        rel: 'noopener'
   end
 
   show title: :name_uk do

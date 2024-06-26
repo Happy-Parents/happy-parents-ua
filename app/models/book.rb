@@ -22,6 +22,7 @@ class Book < ApplicationRecord
 
   delegate :drop_shipping_available,
            :inventory_number,
+           :name,
            :name_uk,
            :name_ru,
            :price,
