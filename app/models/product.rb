@@ -33,7 +33,8 @@ class Product < ApplicationRecord
   translates :name, type: :string
   monetize :price_cents
 
-  validate :validate_translated_names
+  # TODO: revise translated names validations and add tests for create/update seperate/botch
+  # validate :validate_translated_names
 
   # TODO: add uniqueness validation for name_uk & name_ru
   validates :name_uk,
@@ -49,6 +50,7 @@ class Product < ApplicationRecord
   validates :price_cents, presence: true, numericality: { greater_than: 0 }
   validates :whearhouse_count, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
+  # TODO: verify and debug whether next line is needed
   accepts_nested_attributes_for :books, allow_destroy: true
 
   private
