@@ -29,7 +29,7 @@ module HappyParentsUa
     config.i18n.default_locale = :uk
     config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.yml')]
 
-    # config.eager_load_paths << Rails.root.join("extras")
+    config.autoload_paths << Rails.root.join('lib/helpers')
     config.generators.test_framework = :rspec
   end
 end

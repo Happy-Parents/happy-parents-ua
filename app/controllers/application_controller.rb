@@ -4,6 +4,8 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale
 
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+
   private
 
   def set_locale
@@ -17,5 +19,9 @@ class ApplicationController < ActionController::Base
     else
       session[:locale] || default_locale
     end
+  end
+
+  def render_not_found(exception)
+    render html: { error: exception.message }, status: :not_found
   end
 end

@@ -32,5 +32,13 @@ FactoryBot.define do
     whearhouse_count { rand(0..100) }
     price_cents { rand(1..10_000) }
     published { [true, false].sample }
+
+    trait :with_published_status do
+      published { true }
+    end
+
+    trait :with_unpublished_status do
+      published { false }
+    end
   end
 end
