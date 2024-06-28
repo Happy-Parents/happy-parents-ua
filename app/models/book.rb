@@ -20,6 +20,10 @@ class Book < ApplicationRecord
 
   belongs_to :product
 
+  def self.find_by_slug(slug)
+    Book.eager_load(:product).find_by!(product: { slug: })
+  end
+
   delegate :drop_shipping_available,
            :inventory_number,
            :name,

@@ -30,13 +30,18 @@ ActiveAdmin.register Book do
     column :drop_shipping_available
     column :published
     actions default: true do |book|
-      link_to t('active_admin.defaults.actions.show_in_app'), book_path(id: book.id), target: '_blank', rel: 'noopener'
+      link_to t('active_admin.defaults.actions.show_in_app'),
+              book_path(slug: book.slug),
+              target: '_blank',
+              rel: 'noopener'
     end
   end
 
   action_item :view, only: :show do
-    link_to t('active_admin.defaults.actions.show_in_app'), book_path(id: resource.id), target: '_blank',
-                                                                                        rel: 'noopener'
+    link_to t('active_admin.defaults.actions.show_in_app'),
+            book_path(slug: resource.slug),
+            target: '_blank',
+            rel: 'noopener'
   end
 
   show title: :name_uk do

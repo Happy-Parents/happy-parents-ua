@@ -2,11 +2,11 @@
 
 RSpec.describe BooksController do
   describe '#show' do
-    let(:id) { book.id }
+    let(:slug) { book.slug }
 
     before do
       warden.set_user(user)
-      get :show, params: { id: }
+      get :show, params: { slug: }
     end
 
     context 'when user is not logged in' do

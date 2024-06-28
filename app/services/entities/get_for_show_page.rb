@@ -6,9 +6,9 @@ module Entities
   class GetForShowPage
     extend Callable
 
-    def initialize(entity_class:, entity_id:, policy_class:, user:)
+    def initialize(entity_class:, entity_slug:, policy_class:, user:)
       @entity_class = entity_class
-      @entity_id = entity_id
+      @entity_slug = entity_slug
       @policy_class = policy_class
       @user = user
     end
@@ -23,10 +23,10 @@ module Entities
 
     private
 
-    attr_reader :entity_class, :entity_id, :policy_class, :user
+    attr_reader :entity_class, :entity_slug, :policy_class, :user
 
     def entity
-      @entity ||= entity_class.find(entity_id)
+      @entity ||= entity_class.find_by_slug(entity_slug)
     end
 
     def access_allowed

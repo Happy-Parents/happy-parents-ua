@@ -11,7 +11,7 @@ class BooksController < ApplicationController
   def show_params
     {
       entity_class: Book,
-      entity_id: params.require(:id),
+      entity_slug: params.require(:slug),
       policy_class: BookPolicy,
       user: current_admin
     }

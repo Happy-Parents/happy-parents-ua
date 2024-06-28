@@ -28,4 +28,15 @@ RSpec.describe Book do
     it { is_expected.to define_enum_for(:language).with_values(%i[uk eng ru]) }
     it { is_expected.to define_enum_for(:cover_type).with_values(%i[hard soft]) }
   end
+
+  describe 'slass methods' do
+    describe '#find_by_slug' do
+      let(:slug) { book.slug }
+      let(:book) { create(:book) }
+
+      it 'finds and returns book by slug' do
+        expect(described_class.find_by_slug(slug).id).to equal(book.id)
+      end
+    end
+  end
 end

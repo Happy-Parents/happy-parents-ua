@@ -6,14 +6,14 @@ RSpec.describe Entities::GetForShowPage do
   let(:arguments) do
     {
       entity_class:,
-      entity_id:,
+      entity_slug:,
       policy_class:,
       user:
     }
   end
 
   let(:entity_class) { instance_double(Entity) }
-  let(:entity_id) { rand(0..10) }
+  let(:entity_slug) { FFaker::Lorem.word }
   let(:policy_class) { instance_double(Policy) }
   let(:user) { instance_double(User) }
 
@@ -31,8 +31,8 @@ RSpec.describe Entities::GetForShowPage do
 
   context 'when entity does not exist' do
     before do
-      allow(entity_class).to receive(:find).with(entity_id)
-                                           .and_raise(ActiveRecord::RecordNotFound)
+      allow(entity_class).to receive(:find_by_slug).with(entity_slug)
+                                                   .and_raise(ActiveRecord::RecordNotFound)
     end
 
     it 'raises ActiveRecord::RecordNotFound error' do
@@ -42,8 +42,8 @@ RSpec.describe Entities::GetForShowPage do
 
   context 'when entity exists' do
     before do
-      allow(entity_class).to receive(:find).with(entity_id)
-                                           .and_return(entity_instance)
+      allow(entity_class).to receive(:find_by_slug).with(entity_slug)
+                                                   .and_return(entity_instance)
     end
 
     context 'when entity published' do
