@@ -46,4 +46,6 @@ class Book < ApplicationRecord
   enum language: { uk: 0, eng: 1, ru: 2 }
 
   accepts_nested_attributes_for :product
+
+  scope :published, -> { eager_load(:product).where(product: { published: true }) }
 end

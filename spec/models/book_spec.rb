@@ -38,5 +38,15 @@ RSpec.describe Book do
         expect(described_class.find_by_slug(slug).id).to equal(book.id)
       end
     end
+
+    describe '#published scope' do
+      before { create_list(:book, 2, :with_unpublished_status) }
+
+      let(:published_books) { create_list(:book, 2, :with_published_status) }
+
+      it 'returns only published books' do
+        expect(described_class.published).to match_array(published_books)
+      end
+    end
   end
 end

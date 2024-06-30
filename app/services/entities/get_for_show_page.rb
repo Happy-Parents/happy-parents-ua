@@ -16,7 +16,7 @@ module Entities
     def call
       return entity if entity.published
 
-      raise ActiveRecord::RecordNotFound unless access_allowed
+      raise ActiveRecord::RecordNotFound unless access_allowed?
 
       entity
     end
@@ -29,7 +29,7 @@ module Entities
       @entity ||= entity_class.find_by_slug(entity_slug)
     end
 
-    def access_allowed
+    def access_allowed?
       user && policy_class.new(user, entity).show?
     end
   end

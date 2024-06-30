@@ -44,6 +44,13 @@ ActiveAdmin.register Book do
             rel: 'noopener'
   end
 
+  action_item :view, only: :index do
+    link_to t('active_admin.defaults.actions.show_in_app'),
+            books_path,
+            target: '_blank',
+            rel: 'noopener'
+  end
+
   show title: :name_uk do
     # TODO: add show in app link
     panel 'Product Details' do
