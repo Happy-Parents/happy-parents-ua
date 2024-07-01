@@ -55,7 +55,7 @@ group :development, :test do
   gem 'bundler-audit', '~> 0.9.1'
   gem 'factory_bot_rails', '~> 6.4', '>= 6.4.3'
   gem 'ffaker', '~> 2.23'
-  gem 'pry-rails', '~> 0.3.9'
+  gem 'pry-rails', '~> 0.3.11'
   gem 'reek', '~> 6.3'
   gem 'rspec-rails', '~> 6.1', '>= 6.1.2'
   gem 'rubocop', '~> 1.64'
