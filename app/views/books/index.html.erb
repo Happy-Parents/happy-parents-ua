@@ -4,3 +4,4 @@
 <li><%= link_to(book.name, book_path(slug: book.slug)) %></li>
 <% end %>
 </ul>
+<%== pagy_nav(@pagy) %>

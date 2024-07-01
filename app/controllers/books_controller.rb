@@ -3,7 +3,7 @@
 # Controller for interacting with book entities
 class BooksController < ApplicationController
   def index
-    @books = Entities::GetForIndexPage.call(**index_params)
+    @pagy, @books = pagy(Entities::GetForIndexPage.call(**index_params))
   end
 
   def show

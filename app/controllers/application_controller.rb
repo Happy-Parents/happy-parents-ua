@@ -2,6 +2,7 @@
 
 # Main application controller to be inherited from with all shared behaviour
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
   before_action :set_locale
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
