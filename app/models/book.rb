@@ -35,11 +35,11 @@ class Book < ApplicationRecord
            :whearhouse_count,
            :manufacturer,
            to: :product
-  # TODO: validate :pages_count numericality
   validates :cover_type,
             :language,
-            :pages_count,
             presence: true
+
+  validates :pages_count, presence: true, numericality: { greater_than: 0 }
 
   enum cover_type: { hard: 0, soft: 1 }
 

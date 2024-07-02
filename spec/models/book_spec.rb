@@ -25,6 +25,8 @@ RSpec.describe Book do
     %i[cover_type language pages_count].each do |attribute|
       it { is_expected.to validate_presence_of(attribute) }
     end
+
+    it { is_expected.to validate_numericality_of(:pages_count).is_greater_than(0) }
     it { is_expected.to define_enum_for(:language).with_values(%i[uk eng ru]) }
     it { is_expected.to define_enum_for(:cover_type).with_values(%i[hard soft]) }
   end
