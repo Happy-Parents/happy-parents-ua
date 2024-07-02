@@ -6,9 +6,10 @@ uk:
         other: Книги
     attributes:
       book:
-        manufacturer: Видавництво
-        name_uk: Назва українською
-        name_ru: Назва російською
+        inventory_number: інвентарний номер
+        manufacturer: видавництво
+        name_uk: назва українською
+        name_ru: назва російською
         slug: адреса веб-сторінки
         cover_type: тип обкладинки
         language: мова
@@ -16,15 +17,15 @@ uk:
         authors: автори
         price_cents: ціна
         price: ціна (грн, коп)
-        whearhouse_count: залишки на складі
+        whearhouse_count: залишки
         drop_shipping_available: дроп-шипінг
-        published: опубліковано
+        published: опублікований
     enums:
       book:
+        cover_type:
+          hard: жорстка
+          soft: мʼяка
         language:
           uk: українська
           eng: англійська
           ru: російська
-        cover_type:
-          hard: жорстка
-          soft: мʼяка

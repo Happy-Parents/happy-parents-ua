@@ -1,0 +1,18 @@
+uk:
+  activerecord:
+    models:
+      product:
+        one: товар
+        other: товари
+    attributes:
+      product:
+        manufacturer: виробник
+        inventory_number: інвентарний номер
+        drop_shipping_available: дроп-шипінг
+        price_cents: ціна в копійках
+        price: ціна (грн, коп)
+        published: опублікований
+        slug: адреса веб-сторінки
+        whearhouse_count: залишки
+        name_uk: назва українською
+        name_ru: назва російською

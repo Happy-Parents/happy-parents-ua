@@ -30,30 +30,20 @@ ActiveAdmin.register Book do
     column :drop_shipping_available
     column :published
     actions default: true do |book|
-      link_to t('active_admin.defaults.actions.show_in_app'),
-              book_path(slug: book.slug),
-              target: '_blank',
-              rel: 'noopener'
+      show_in_app_link(book_path(slug: book.slug))
     end
   end
 
   action_item :view, only: :show do
-    link_to t('active_admin.defaults.actions.show_in_app'),
-            book_path(slug: resource.slug),
-            target: '_blank',
-            rel: 'noopener'
+    show_in_app_link(book_path(slug: resource.slug))
   end
 
   action_item :view, only: :index do
-    link_to t('active_admin.defaults.actions.show_in_app'),
-            books_path,
-            target: '_blank',
-            rel: 'noopener'
+    show_in_app_link(books_path)
   end
 
   show title: :name_uk do
-    # TODO: add show in app link
-    panel 'Product Details' do
+    panel 'Деталі товару' do
       attributes_table_for book.product do
         row :id
         row :inventory_number
@@ -70,8 +60,12 @@ ActiveAdmin.register Book do
     end
     attributes_table do
       row :id
-      row :language
-      row :cover_type
+      row :language do |book|
+        enum_translation(:book, :language, book.language)
+      end
+      row :cover_type do |book|
+        enum_translation(:book, :cover_type, book.cover_type)
+      end
       row :pages_count
       row :authors
     end
@@ -79,9 +73,14 @@ ActiveAdmin.register Book do
   end
 
   filter :authors
-  filter :cover_type, as: :select, collection: Book.cover_types.keys.map { |key| [key.humanize, Book.cover_types[key]] }
-  filter :language, as: :select, collection: Book.languages.keys.map { |key| [key.humanize, Book.languages[key]] }
+  filter :cover_type, as: :select, collection: Book.cover_types.keys.map { |key|
+                                                 [I18n.t("activerecord.enums.book.cover_type.#{key}"), key]
+                                               }
+  filter :language, as: :select, collection: Book.languages.keys.map { |key|
+                                               [I18n.t("activerecord.enums.book.language.#{key}"), key]
+                                             }
   filter :product_inventory_number, as: :string
+  # TODO: add translation name filters
   # filter :product_name_uk, as: :string
   # filter :product_name_ru, as: :string
   filter :product_price_cents, as: :numeric
@@ -92,23 +91,24 @@ ActiveAdmin.register Book do
 
   form do |f|
     f.object.errors.messages
+    # TODO: debug and add error messages
     # f.semantic_errors *f.object.errors.messages
 
-    f.inputs 'Book Details' do
+    f.inputs 'Атрибути книги' do
       f.input :authors
-      f.input :cover_type, as: :select, collection: Book.cover_types.keys
-      f.input :language, as: :select, collection: Book.languages.keys
+      f.input :cover_type, as: :select, collection: translated_collection('book', 'cover_type')
+      f.input :language, as: :select, collection: translated_collection('book', 'language')
       f.input :pages_count
     end
 
-    f.inputs 'Product Details', for: [:product, f.object.product || Product.new] do |product_form|
+    f.inputs 'Деталі товару', for: [:product, f.object.product || Product.new] do |product_form|
       product_form.input :manufacturer
       product_form.input :name_uk
       product_form.input :name_ru
       product_form.input :inventory_number
       # TODO: refactor to price
-      product_form.input :price_cents, label: 'Price'
-      product_form.input :whearhouse_count, label: 'Warehouse Count'
+      product_form.input :price_cents
+      product_form.input :whearhouse_count
       product_form.input :drop_shipping_available
       product_form.input :published
     end

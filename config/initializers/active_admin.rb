@@ -189,6 +189,7 @@ ActiveAdmin.setup do |config|
   # You can run `bin/rails runner 'puts I18n.t("date.formats")'` to see the
   # available formats in your application.
   #
+  config.load_paths += [File.expand_path('config/locales', __dir__)]
   config.localize_format = :long
 
   # == Setting a Favicon

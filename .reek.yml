@@ -1,5 +1,8 @@
 ---
 detectors:
+  UtilityFunction:
+    exclude:
+      - 'ActiveAdmin::ViewsHelper'
   IrresponsibleModule:
     exclude:
       - 'HappyParentsUa::Application'
