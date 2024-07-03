@@ -19,7 +19,7 @@ FactoryBot.define do
     authors { FFaker::Lorem.words(2).map(&:capitalize).join(', ') }
     cover_type { [0, 1].sample }
     language { [0, 1, 2].sample }
-    pages_count { rand(0..100) }
+    pages_count { rand(1..100) }
 
     trait :with_published_status do
       product factory: %i[product with_published_status]

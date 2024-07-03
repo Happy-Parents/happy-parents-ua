@@ -53,6 +53,7 @@ group :development, :test do
   gem 'brakeman', '~> 6.1', '>= 6.1.2'
   gem 'bullet', '~> 7.1', '>= 7.1.6'
   gem 'bundler-audit', '~> 0.9.1'
+  gem 'database_cleaner-active_record', '~> 2.1'
   gem 'factory_bot_rails', '~> 6.4', '>= 6.4.3'
   gem 'ffaker', '~> 2.23'
   gem 'pry-rails', '~> 0.3.9'
