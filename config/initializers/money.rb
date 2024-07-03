@@ -7,4 +7,10 @@ MoneyRails.configure do |config|
   config.rounding_mode = BigDecimal::ROUND_HALF_UP
   config.locale_backend = :i18n
   config.raise_error_on_money_parsing = false
+  config.default_format = {
+    no_cents_if_whole: false,
+    symbol: '₴',
+    decimal_mark: '.',
+    thousands_separator: ','
+  }
 end

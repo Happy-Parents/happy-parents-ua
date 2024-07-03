@@ -16,7 +16,7 @@ uk:
         pages_count: кількість сторінок
         authors: автори
         price_cents: ціна
-        price: ціна (грн, коп)
+        price: ціна
         whearhouse_count: залишки
         drop_shipping_available: дроп-шипінг
         published: опублікований

@@ -3,3 +3,5 @@ uk:
     defaults:
       actions:
         show_in_app: Відкрити на сайті
+      hints:
+        price_format: 'напр.: 100, 25.50'

@@ -105,10 +105,12 @@ RSpec.describe BooksController do
         expect(response).to have_http_status(:ok)
       end
 
+      # TODO: check for flucky tests
       it 'renders the :index template' do
         expect(response).to render_template(:index)
       end
 
+      # TODO: check for flucky tests
       it 'renders only published books' do
         expect(assigns(:books).all?(&:published)).to equal(true)
       end
@@ -129,6 +131,7 @@ RSpec.describe BooksController do
         expect(response).to render_template(:index)
       end
 
+      # TODO: check for flucky tests
       it 'renders all books' do
         expect(assigns(:books).count).to equal(5)
       end
@@ -141,6 +144,7 @@ RSpec.describe BooksController do
         expect(response).to have_http_status(:ok)
       end
 
+      # TODO: check for flucky tests
       it 'renders the :index template' do
         expect(response).to render_template(:index)
       end

@@ -49,7 +49,9 @@ ActiveAdmin.register Book do
         row :inventory_number
         row :name_uk
         row :name_ru
-        row :price
+        row :price do |book|
+          book.price.format
+        end
         row :published
         row :slug
         row :whearhouse_count
@@ -69,19 +71,22 @@ ActiveAdmin.register Book do
       row :pages_count
       row :authors
     end
+    # TODO: add admin comments
     # active_admin_comments_for(resource)
   end
 
   filter :authors
-  filter :cover_type, as: :select, collection: Book.cover_types.keys.map { |key|
-                                                 [I18n.t("activerecord.enums.book.cover_type.#{key}"), key]
-                                               }
-  filter :language, as: :select, collection: Book.languages.keys.map { |key|
-                                               [I18n.t("activerecord.enums.book.language.#{key}"), key]
-                                             }
+  filter :cover_type, as: :select,
+                      collection: Book.cover_types.keys.map do |key|
+    [I18n.t("activerecord.enums.book.cover_type.#{key}"), key]
+  end
+  filter :language, as: :select,
+                    collection: Book.languages.keys.map do |key|
+    [I18n.t("activerecord.enums.book.language.#{key}"), key]
+  end
   filter :product_inventory_number, as: :string
   # TODO: add translation name filters
-  # filter :product_name_uk, as: :string
+  # filter :name_uk, as: :string, collection: proc { Product.all.map(&:name_uk) }
   # filter :product_name_ru, as: :string
   filter :product_price_cents, as: :numeric
   filter :product_published, as: :select
@@ -106,8 +111,9 @@ ActiveAdmin.register Book do
       product_form.input :name_uk
       product_form.input :name_ru
       product_form.input :inventory_number
-      # TODO: refactor to price
-      product_form.input :price_cents
+      product_form.input :price, input_html: { value: formatted_price_input(object) },
+                                 hint: I18n.t('active_admin.defaults.hints.price_format')
+
       product_form.input :whearhouse_count
       product_form.input :drop_shipping_available
       product_form.input :published
@@ -117,5 +123,27 @@ ActiveAdmin.register Book do
     end
 
     f.actions
+  end
+  controller do
+    def create
+      prepare_product_params
+      super
+    end
+
+    def update
+      prepare_product_params
+      super
+    end
+
+    private
+
+    def prepare_product_params
+      product_attributes[:price_cents] = Store::PriceToCents.call(product_attributes.require(:price))
+      product_attributes.delete(:price)
+    end
+
+    def product_attributes
+      params.require(:book).require(:product_attributes)
+    end
   end
 end

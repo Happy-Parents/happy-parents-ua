@@ -10,7 +10,7 @@ uk:
         inventory_number: інвентарний номер
         drop_shipping_available: дроп-шипінг
         price_cents: ціна в копійках
-        price: ціна (грн, коп)
+        price: ціна
         published: опублікований
         slug: адреса веб-сторінки
         whearhouse_count: залишки
