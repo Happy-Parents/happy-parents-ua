@@ -2,6 +2,6 @@ uk:
   active_admin:
     defaults:
       actions:
-        show_in_app: Відкрити на сайті
+        show_in_app: ↗️відкрити
       hints:
         price_format: 'напр.: 100, 25.50'
