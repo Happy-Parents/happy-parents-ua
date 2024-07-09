@@ -76,11 +76,11 @@ ActiveAdmin.register Book do
   end
 
   filter :authors
-  filter :cover_type, as: :select,
+  filter :cover_type, as: :select, # -
                       collection: Book.cover_types.keys.map do |key|
     [I18n.t("activerecord.enums.book.cover_type.#{key}"), key]
   end
-  filter :language, as: :select,
+  filter :language, as: :select, # -
                     collection: Book.languages.keys.map do |key|
     [I18n.t("activerecord.enums.book.language.#{key}"), key]
   end
