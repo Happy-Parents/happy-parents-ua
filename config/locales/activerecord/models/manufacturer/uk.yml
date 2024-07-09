@@ -1,0 +1,10 @@
+uk:
+  activerecord:
+    models:
+      manufacturer:
+        one: виробник
+        other: виробники
+    attributes:
+      manufacturer:
+        name: назва
+        country: країна походження

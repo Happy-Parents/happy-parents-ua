@@ -10,4 +10,5 @@ Rails.application.routes.draw do
 
   root 'pages#index'
   post 'locales/:locale', to: 'locales#create', as: 'set_locale'
+  resources :books, only: %i[index show], param: :slug
 end

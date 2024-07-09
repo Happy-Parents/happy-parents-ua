@@ -13,7 +13,7 @@ ActiveAdmin.register Country do
   filter :name_uk
 
   show do
-    h3.country.name_uk
+    h1.country.name_uk
     attributes_table do
       row :name_uk
       row :name_ru

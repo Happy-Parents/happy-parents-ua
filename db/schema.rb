@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_27_191115) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_21_134602) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,6 +39,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_191115) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.integer "cover_type", null: false
+    t.integer "language", null: false
+    t.integer "pages_count", null: false
+    t.string "authors"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "product_id"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -79,6 +89,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_191115) do
     t.datetime "updated_at", null: false
     t.index ["translatable_id", "translatable_type", "key"], name: "index_mobility_text_translations_on_translatable_attribute"
     t.index ["translatable_id", "translatable_type", "locale", "key"], name: "index_mobility_text_translations_on_keys", unique: true
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "inventory_number", null: false
+    t.bigint "manufacturer_id"
+    t.integer "price_cents", null: false
+    t.string "slug", null: false
+    t.integer "whearhouse_count", null: false
+    t.boolean "published", default: false, null: false
+    t.boolean "drop_shipping_available", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inventory_number"], name: "index_products_on_inventory_number", unique: true
+    t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
+    t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
   create_table "trade_marks", force: :cascade do |t|
