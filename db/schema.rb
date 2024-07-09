@@ -54,11 +54,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_09_101558) do
   create_table "books_categories", force: :cascade do |t|
     t.bigint "book_id"
     t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_books_categories_on_book_id"
     t.index ["category_id"], name: "index_books_categories_on_category_id"
   end
 
   create_table "categories", force: :cascade do |t|
+    t.string "slug", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
   create_table "countries", force: :cascade do |t|
