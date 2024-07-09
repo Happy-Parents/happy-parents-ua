@@ -48,3 +48,5 @@ RSpec/NestedGroups:
 # ===================== Rails ====================
 Rails/DynamicFindBy:
   Enabled: false
+Rails/HasAndBelongsToMany:
+  Enabled: false

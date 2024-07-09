@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_21_134602) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_09_101558) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,6 +49,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_21_134602) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "product_id"
+  end
+
+  create_table "books_categories", force: :cascade do |t|
+    t.bigint "book_id"
+    t.bigint "category_id"
+    t.index ["book_id"], name: "index_books_categories_on_book_id"
+    t.index ["category_id"], name: "index_books_categories_on_category_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
   end
 
   create_table "countries", force: :cascade do |t|
