@@ -1,0 +1,10 @@
+uk:
+  activerecord:
+    models:
+      country:
+        one: Країна
+        other: Країни
+    attributes:
+      country:
+        name_uk: Назва українською
+        name_ru: Назва російською

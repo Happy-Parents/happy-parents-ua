@@ -2,7 +2,10 @@
 
 # Main application controller to be inherited from with all shared behaviour
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
   before_action :set_locale
+
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
   private
 
@@ -17,5 +20,9 @@ class ApplicationController < ActionController::Base
     else
       session[:locale] || default_locale
     end
+  end
+
+  def render_not_found(exception)
+    render html: { error: exception.message }, status: :not_found
   end
 end

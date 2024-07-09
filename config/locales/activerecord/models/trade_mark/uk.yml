@@ -1,0 +1,10 @@
+uk:
+  activerecord:
+    models:
+      trade_mark:
+        one: торгівельна марка
+        other: торгівельні марки
+    attributes:
+      trade_mark:
+        name: назва
+        manufacturer: виробник

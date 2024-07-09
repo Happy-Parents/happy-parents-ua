@@ -1,0 +1,7 @@
+<h1><%= t('views.books.index.title')%></h1>
+<ul>
+<% @books.each do |book| %>
+<li><%= link_to(book.name, book_path(slug: book.slug)) %></li>
+<% end %>
+</ul>
+<%== pagy_nav(@pagy) %>

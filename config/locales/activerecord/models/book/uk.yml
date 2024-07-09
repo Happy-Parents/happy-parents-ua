@@ -1,0 +1,31 @@
+uk:
+  activerecord:
+    models:
+      book:
+        one: Книга
+        other: Книги
+    attributes:
+      book:
+        product_inventory_number: інвентарний номер
+        manufacturer: видавництво
+        name_uk: назва українською
+        name_ru: назва російською
+        product_slug: адреса веб-сторінки
+        cover_type: тип обкладинки
+        language: мова
+        pages_count: кількість сторінок
+        authors: автори
+        product_price_cents: ціна в копійках
+        price: ціна
+        product_whearhouse_count: залишки
+        product_drop_shipping_available: дроп-шипінг
+        product_published: опублікований
+    enums:
+      book:
+        cover_type:
+          hard: жорстка
+          soft: мʼяка
+        language:
+          uk: українська
+          eng: англійська
+          ru: російська

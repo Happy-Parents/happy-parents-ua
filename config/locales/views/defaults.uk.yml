@@ -1,0 +1,6 @@
+uk:
+  views:
+    defaults:
+      store:
+        product_page:
+          price: "Ціна: %{price}"

@@ -20,7 +20,7 @@ RSpec.describe TradeMark do
   subject(:trade_mark) { build(:trade_mark) }
 
   describe 'associations' do
-    it { is_expected.to belong_to(:manufacturer) }
+    it { is_expected.to belong_to(:manufacturer).optional }
   end
 
   describe 'validations' do

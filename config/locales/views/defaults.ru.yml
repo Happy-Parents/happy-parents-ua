@@ -1,0 +1,6 @@
+ru:
+  views:
+    defaults:
+      store:
+        product_page:
+          price: "Цена: %{price}"
