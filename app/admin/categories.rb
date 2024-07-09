@@ -5,9 +5,8 @@ ActiveAdmin.register Category do
 
   index do
     selectable_column
-    id_column
     column :name_uk
-    actions
+    actions name: I18n.t('active_admin.defaults.column_titles.actions')
   end
 
   filter :slug
