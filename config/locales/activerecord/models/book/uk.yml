@@ -20,6 +20,7 @@ uk:
         product_whearhouse_count: залишки
         product_drop_shipping_available: дроп-шипінг
         product_published: опублікований
+        categories: категоріїї
     enums:
       book:
         cover_type:
