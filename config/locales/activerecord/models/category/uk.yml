@@ -9,3 +9,13 @@ uk:
         slug: адреса веб-сторінки
         name_uk: назва українською
         name_ru: назва російською
+    errors:
+      models:
+        category:
+          attributes:
+            name_uk:
+              blank: "не може бути порожнім"
+              taken: "вже зайнято"
+            name_ru:
+              blank: "не може бути порожнім"
+              taken: "вже зайнято"

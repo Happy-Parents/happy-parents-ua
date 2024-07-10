@@ -21,7 +21,9 @@ RSpec.describe Category do
   end
 
   describe 'validations' do
-    it { is_expected.to validate_presence_of(:slug) }
+    %i[slug name_uk name_ru].each do |attribute|
+      it { is_expected.to validate_presence_of(attribute) }
+    end
     it { is_expected.to validate_uniqueness_of(:slug).case_insensitive }
   end
 end

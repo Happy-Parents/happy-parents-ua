@@ -22,6 +22,8 @@ class Category < ApplicationRecord
   has_and_belongs_to_many :books
 
   validates :slug, presence: true, uniqueness: { case_sensitive: false }
+  # TODO: add uniqueness validation
+  validates :name_uk, :name_ru, presence: true
 
   # Method to generate ransacker for translated attributes
   def self.translation_ransacker(attribute, locale)
