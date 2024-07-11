@@ -30,5 +30,10 @@ ActiveAdmin.register BookCategory do
       row :name_ru
     end
     # active_admin_comments
+    table_for book_category.books, 'Книги' do
+      column 'Назва' do |book|
+        link_to(book.name_uk, admin_book_path(book))
+      end
+    end
   end
 end

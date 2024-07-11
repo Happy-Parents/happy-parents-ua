@@ -19,11 +19,9 @@ ActiveAdmin.register Country do
       row :name_ru
     end
 
-    panel 'Manufacturers' do
-      table_for country.manufacturers do
-        column 'Name' do |manufacturer|
-          link_to manufacturer.name, admin_manufacturer_path(manufacturer)
-        end
+    table_for country.manufacturers, 'Виробники' do
+      column 'Назва' do |manufacturer|
+        link_to manufacturer.name, admin_manufacturer_path(manufacturer)
       end
     end
   end
