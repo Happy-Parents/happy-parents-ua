@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe CategoryPolicy do
+RSpec.describe BookCategoryPolicy do
   subject { described_class.new(user, record) }
 
-  let(:record) { Category.new }
+  let(:record) { BookCategory.new }
 
   describe 'with superadmin permisions' do
     let(:user) { build(:admin, :with_superadmin_role) }

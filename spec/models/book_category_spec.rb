@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: categories
+# Table name: book_categories
 #
 #  id         :bigint           not null, primary key
 #  slug       :string           not null
@@ -11,10 +11,10 @@
 #
 # Indexes
 #
-#  index_categories_on_slug  (slug) UNIQUE
+#  index_book_categories_on_slug  (slug) UNIQUE
 #
-RSpec.describe Category do
-  subject(:category) { build(:category) }
+RSpec.describe BookCategory do
+  subject(:category) { build(:book_category) }
 
   describe 'associations' do
     it { is_expected.to have_and_belong_to_many(:books) }

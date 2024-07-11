@@ -17,7 +17,7 @@ ActiveAdmin.register Book do
                   drop_shipping_available
                   manufacturer_id
                 ],
-                category_ids: []
+                book_category_ids: []
 
   index download_links: false do
     selectable_column
@@ -71,8 +71,8 @@ ActiveAdmin.register Book do
       end
       row :pages_count
       row :authors
-      row :categories do |book|
-        safe_join(book.categories.map(&:name_uk), ', ')
+      row :book_categories do |book|
+        safe_join(book.book_categories.map(&:name_uk), ', ')
       end
     end
     # TODO: add admin comments
@@ -108,7 +108,7 @@ ActiveAdmin.register Book do
       f.input :cover_type, as: :select, collection: translated_collection('book', 'cover_type')
       f.input :language, as: :select, collection: translated_collection('book', 'language')
       f.input :pages_count
-      f.input :categories, as: :check_boxes
+      f.input :book_categories, as: :check_boxes
     end
 
     f.inputs 'Деталі товару', for: [:product, f.object.product || Product.new] do |product_form|

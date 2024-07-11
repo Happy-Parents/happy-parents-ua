@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ActiveAdmin.register Category do
+ActiveAdmin.register BookCategory do
   permit_params :slug, :name_uk, :name_ru
 
   index do

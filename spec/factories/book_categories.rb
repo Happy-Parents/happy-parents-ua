@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: categories
+# Table name: book_categories
 #
 #  id         :bigint           not null, primary key
 #  slug       :string           not null
@@ -11,10 +11,10 @@
 #
 # Indexes
 #
-#  index_categories_on_slug  (slug) UNIQUE
+#  index_book_categories_on_slug  (slug) UNIQUE
 #
 FactoryBot.define do
-  factory :category do
+  factory :book_category do
     sequence(:name_uk) { |n| "#{FFaker::Lorem.word}#{n}" }
     sequence(:name_ru) { |n| "#{FFaker::Lorem.word}#{n}" }
     sequence(:slug) { |n| "#{FFaker::Lorem.word}#{n}" }

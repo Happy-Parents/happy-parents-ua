@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: categories
+# Table name: book_categories
 #
 #  id         :bigint           not null, primary key
 #  slug       :string           not null
@@ -11,9 +11,9 @@
 #
 # Indexes
 #
-#  index_categories_on_slug  (slug) UNIQUE
+#  index_book_categories_on_slug  (slug) UNIQUE
 #
-class Category < ApplicationRecord
+class BookCategory < ApplicationRecord
   include RanSackableAttributable
   extend Mobility
 
@@ -30,8 +30,8 @@ class Category < ApplicationRecord
     ransacker attribute do
       Arel.sql(
         'COALESCE((SELECT value FROM mobility_string_translations ' \
-        "WHERE mobility_string_translations.translatable_type = 'Category' " \
-        'AND mobility_string_translations.translatable_id = categories.id ' \
+        "WHERE mobility_string_translations.translatable_type = 'BookCategory' " \
+        'AND mobility_string_translations.translatable_id = book_categories.id ' \
         "AND mobility_string_translations.key = 'name' " \
         "AND mobility_string_translations.locale = '#{locale}'), '')"
       )

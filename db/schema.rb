@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_09_101558) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_10_143339) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_09_101558) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "book_categories", force: :cascade do |t|
+    t.string "slug", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_book_categories_on_slug", unique: true
+  end
+
+  create_table "book_categories_books", force: :cascade do |t|
+    t.bigint "book_id"
+    t.bigint "book_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_category_id"], name: "index_book_categories_books_on_book_category_id"
+    t.index ["book_id"], name: "index_book_categories_books_on_book_id"
+  end
+
   create_table "books", force: :cascade do |t|
     t.integer "cover_type", null: false
     t.integer "language", null: false
@@ -49,22 +65,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_09_101558) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "product_id"
-  end
-
-  create_table "books_categories", force: :cascade do |t|
-    t.bigint "book_id"
-    t.bigint "category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_books_categories_on_book_id"
-    t.index ["category_id"], name: "index_books_categories_on_category_id"
-  end
-
-  create_table "categories", force: :cascade do |t|
-    t.string "slug", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
   create_table "countries", force: :cascade do |t|

@@ -1,17 +1,17 @@
 uk:
   activerecord:
     models:
-      category:
+      book_category:
         one: Категорія
         other: Категорії
     attributes:
-      category:
+      book_category:
         slug: адреса веб-сторінки
         name_uk: назва українською
         name_ru: назва російською
     errors:
       models:
-        category:
+        book_category:
           attributes:
             name_uk:
               blank: "не може бути порожнім"
