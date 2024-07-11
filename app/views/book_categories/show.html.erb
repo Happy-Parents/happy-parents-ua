@@ -1,0 +1,6 @@
+<h1><%= @book_category.name%></h1>
+<ul>
+<% @book_category.books.each do |book| %>
+<li><%= link_to(book.name, book_path(slug: book.slug)) %></li>
+<% end %>
+</ul>
