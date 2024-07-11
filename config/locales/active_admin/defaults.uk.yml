@@ -1,6 +1,8 @@
 uk:
   active_admin:
     defaults:
+      column_titles:
+        actions: Дії
       actions:
         show_in_app: ↗️відкрити
       hints:

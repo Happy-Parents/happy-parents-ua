@@ -19,6 +19,7 @@ RSpec.describe Book do
 
   describe 'associations' do
     it { is_expected.to belong_to(:product) }
+    it { is_expected.to have_and_belong_to_many(:book_categories) }
   end
 
   describe 'validations' do

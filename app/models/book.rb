@@ -19,6 +19,7 @@ class Book < ApplicationRecord
   include RanSackableAttributable
 
   belongs_to :product
+  has_and_belongs_to_many :book_categories
 
   def self.find_by_slug(slug)
     Book.eager_load(:product).find_by!(product: { slug: })
