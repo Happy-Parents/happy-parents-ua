@@ -25,6 +25,10 @@ ActiveAdmin.register BookCategory do
     f.actions
   end
 
+  action_item :view, only: :index do
+    show_in_app_link(book_categories_path)
+  end
+
   action_item :view, only: :show do
     show_in_app_link(book_category_path(slug: resource.slug))
   end

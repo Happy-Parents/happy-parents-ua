@@ -2,6 +2,10 @@
 
 # Controller for interacting with categories of book products
 class BookCategoriesController < ApplicationController
+  def index
+    @pagy, @book_categories = pagy(BookCategory.all)
+  end
+
   def show
     # TODO: select only published books
     @book_category = BookCategory.preload(:books).find_by!(slug: show_params)

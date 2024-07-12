@@ -2,8 +2,8 @@ uk:
   activerecord:
     models:
       book_category:
-        one: Категорія
-        other: Категорії
+        one: Категорія Книг
+        other: Категорії Книг
     attributes:
       book_category:
         slug: адреса веб-сторінки
