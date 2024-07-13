@@ -7,13 +7,15 @@ class BookCategoriesController < ApplicationController
   end
 
   def show
-    # TODO: select only published books
-    @book_category = BookCategory.preload(:books).find_by!(slug: show_params)
+    @book_category = Resources::BookCategories::GetForShowPage.call(**show_params)
   end
 
   private
 
   def show_params
-    params.require(:slug)
+    {
+      slug: params.require(:slug),
+      user: current_admin
+    }
   end
 end

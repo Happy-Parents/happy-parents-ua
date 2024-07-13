@@ -149,5 +149,6 @@ RSpec.describe BooksController do
         end
       end
     end
+    # TODO: use shared examples when new admin role appears
   end
 end
