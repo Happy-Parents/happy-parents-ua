@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Controller for interacting with book entities
+# Controller for interacting with book products
 class BooksController < ApplicationController
   def index
     @pagy, @books = pagy(Entities::GetForIndexPage.call(**index_params))

@@ -6,7 +6,10 @@ ActiveAdmin.register BookCategory do
   index do
     selectable_column
     column :name_uk
-    actions name: I18n.t('active_admin.defaults.column_titles.actions')
+    # actions name: I18n.t('active_admin.defaults.column_titles.actions')
+    actions default: true do |book_category|
+      show_in_app_link(book_category_path(slug: book_category.slug))
+    end
   end
 
   filter :slug
@@ -20,6 +23,14 @@ ActiveAdmin.register BookCategory do
       f.input :name_ru
     end
     f.actions
+  end
+
+  action_item :view, only: :index do
+    show_in_app_link(book_categories_path)
+  end
+
+  action_item :view, only: :show do
+    show_in_app_link(book_category_path(slug: resource.slug))
   end
 
   show do
