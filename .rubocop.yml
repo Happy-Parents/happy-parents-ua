@@ -41,8 +41,8 @@ Rails/RakeEnvironment:
 RSpec/MultipleMemoizedHelpers:
   Enabled: true
   Exclude:
-    - spec/services/entities/get_for_show_page_spec.rb
-    - spec/services/entities/get_for_index_page_spec.rb
+    - spec/services/resources/publishable/get_for_show_page_spec.rb
+    - spec/services/resources/publishable/get_for_index_page_spec.rb
     - spec/services/resources/book_categories/get_for_show_page_spec.rb
 RSpec/NestedGroups:
   Max: 4

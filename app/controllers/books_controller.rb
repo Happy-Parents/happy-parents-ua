@@ -3,11 +3,11 @@
 # Controller for interacting with book products
 class BooksController < ApplicationController
   def index
-    @pagy, @books = pagy(Entities::GetForIndexPage.call(**index_params))
+    @pagy, @books = pagy(Resources::Publishable::GetForIndexPage.call(**index_params))
   end
 
   def show
-    @book = Entities::GetForShowPage.call(**show_params)
+    @book = Resources::Publishable::GetForShowPage.call(**show_params)
   end
 
   private

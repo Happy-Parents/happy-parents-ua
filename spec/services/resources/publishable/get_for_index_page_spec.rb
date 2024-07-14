@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Entities::GetForIndexPage do
+RSpec.describe Resources::Publishable::GetForIndexPage do
   subject(:called_service) { described_class.call(**arguments) }
 
   let(:arguments) do
