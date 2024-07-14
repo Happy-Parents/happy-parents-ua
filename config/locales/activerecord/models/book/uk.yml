@@ -6,6 +6,7 @@ uk:
         other: Книги
     attributes:
       book:
+        inventory_number: інвентарний номер
         product_inventory_number: інвентарний номер
         manufacturer: видавництво
         name_uk: назва українською
@@ -17,9 +18,12 @@ uk:
         authors: автори
         product_price_cents: ціна в копійках
         price: ціна
+        stock_balance: залишки
         product_stock_balance: залишки
         product_drop_shipping_available: дроп-шипінг
+        drop_shipping_available: дроп-шипінг
         product_published: опублікований
+        published: опублікований
         book_categories: категоріїї
     enums:
       book:
