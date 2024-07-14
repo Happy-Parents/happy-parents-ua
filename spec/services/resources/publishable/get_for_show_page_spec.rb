@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Entities::GetForShowPage do
+RSpec.describe Resources::Publishable::GetForShowPage do
   subject(:called_service) { described_class.call(**arguments) }
 
   let(:arguments) do
