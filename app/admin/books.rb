@@ -143,7 +143,7 @@ ActiveAdmin.register Book do
     private
 
     def prepare_product_params
-      product_attributes[:price_cents] = Store::PriceToCents.call(product_attributes.require(:price))
+      product_attributes[:price_cents] = Actions::PriceToCents.call(product_attributes.require(:price))
       product_attributes.delete(:price)
     end
 

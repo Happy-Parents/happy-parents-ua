@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Store
+module Actions
   # Responsible for converting price input to price_cents int value
   class PriceToCents
     extend Callable

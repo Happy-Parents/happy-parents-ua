@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Store::PriceToCents do
+RSpec.describe Actions::PriceToCents do
   subject(:price_cents) { described_class.call(price) }
 
   describe 'price is valid' do
