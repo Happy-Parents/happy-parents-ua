@@ -10,7 +10,7 @@
 #  price_cents             :integer          not null
 #  published               :boolean          default(FALSE), not null
 #  slug                    :string           not null
-#  whearhouse_count        :integer          not null
+#  stock_balance           :integer          not null
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  manufacturer_id         :bigint
@@ -48,10 +48,14 @@ class Product < ApplicationRecord
             uniqueness: { case_sensitive: false }
 
   validates :price_cents, presence: true, numericality: { greater_than: 0 }
-  validates :whearhouse_count, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :stock_balance, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
   # TODO: verify and debug whether next line is needed
   accepts_nested_attributes_for :books, allow_destroy: true
+
+  def in_stock?
+    drop_shipping_available || stock_balance > 0
+  end
 
   private
 

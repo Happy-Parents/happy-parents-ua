@@ -11,6 +11,8 @@ AllCops:
   NewCops: enable
 
 # ===================== Style ====================
+Style/NumericPredicate:
+  Enabled: false
 Style/Documentation:
   Enabled: true
   Exclude:

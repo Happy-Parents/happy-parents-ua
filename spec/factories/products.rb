@@ -10,7 +10,7 @@
 #  price_cents             :integer          not null
 #  published               :boolean          default(FALSE), not null
 #  slug                    :string           not null
-#  whearhouse_count        :integer          not null
+#  stock_balance           :integer          not null
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  manufacturer_id         :bigint
@@ -29,7 +29,7 @@ FactoryBot.define do
     sequence(:name_uk) { |n| "#{FFaker::Lorem.word}-#{n}" }
     sequence(:name_ru) { |n| "#{FFaker::Lorem.word}-#{n}" }
     drop_shipping_available { [true, false].sample }
-    whearhouse_count { rand(0..100) }
+    stock_balance { rand(0..100) }
     price_cents { rand(1..10_000) }
     published { [true, false].sample }
 

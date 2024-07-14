@@ -10,7 +10,7 @@
 #  price_cents             :integer          not null
 #  published               :boolean          default(FALSE), not null
 #  slug                    :string           not null
-#  whearhouse_count        :integer          not null
+#  stock_balance           :integer          not null
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  manufacturer_id         :bigint
@@ -24,7 +24,10 @@
 require 'rails_helper'
 
 RSpec.describe Product do
-  subject(:product) { build(:product) }
+  subject(:product) { build(:product, drop_shipping_available:, stock_balance:) }
+
+  let(:drop_shipping_available) { [true, false].sample }
+  let(:stock_balance) { rand(0..2) }
 
   describe 'associations' do
     it { is_expected.to belong_to(:manufacturer).optional }
@@ -37,7 +40,7 @@ RSpec.describe Product do
       name_ru
       slug
       price_cents
-      whearhouse_count
+      stock_balance
       inventory_number
     ].each do |attribute|
       it { is_expected.to validate_presence_of(attribute) }
@@ -45,7 +48,7 @@ RSpec.describe Product do
     it { is_expected.to validate_uniqueness_of(:slug).case_insensitive }
     it { is_expected.to validate_uniqueness_of(:inventory_number).case_insensitive }
     it { is_expected.to validate_numericality_of(:price_cents).is_greater_than(0) }
-    it { is_expected.to validate_numericality_of(:whearhouse_count).is_greater_than_or_equal_to(0) }
+    it { is_expected.to validate_numericality_of(:stock_balance).is_greater_than_or_equal_to(0) }
 
     context 'when translated names are not unique for a new record' do
       let(:existing_product) { create(:product) }
@@ -66,6 +69,46 @@ RSpec.describe Product do
         new_product.valid?
         expect(new_product.errors.messages).to eq({ name_uk: ['must be unique'],
                                                     name_ru: ['must be unique'] })
+      end
+    end
+  end
+
+  describe 'instance methods' do
+    describe '#in_stock?' do
+      context 'when drop shipping is available &stock balance is greater than 0' do
+        let(:drop_shipping_available) { true }
+        let(:stock_balance) { rand(1..3) }
+
+        it 'returns true' do
+          expect(product.in_stock?).to equal(true)
+        end
+      end
+
+      context 'when drop shipping is available & stock balance is 0' do
+        let(:drop_shipping_available) { true }
+        let(:stock_balance) { 0 }
+
+        it 'returns true' do
+          expect(product.in_stock?).to equal(true)
+        end
+      end
+
+      context 'when drop shipping is not available & stock balance is greater than 0' do
+        let(:drop_shipping_available) { false }
+        let(:stock_balance) { rand(1..3) }
+
+        it 'returns true' do
+          expect(product.in_stock?).to equal(true)
+        end
+      end
+
+      context 'when drop shipping is not available & stock balance is 0' do
+        let(:drop_shipping_available) { false }
+        let(:stock_balance) { 0 }
+
+        it 'returns true' do
+          expect(product.in_stock?).to equal(false)
+        end
       end
     end
   end

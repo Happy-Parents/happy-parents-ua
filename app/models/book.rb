@@ -26,15 +26,18 @@ class Book < ApplicationRecord
   end
 
   delegate :drop_shipping_available,
+           :drop_shipping_available?,
            :inventory_number,
            :name,
            :name_uk,
            :name_ru,
            :price,
            :published,
+           :published?,
            :slug,
-           :whearhouse_count,
+           :stock_balance,
            :manufacturer,
+           :in_stock?,
            to: :product
   validates :cover_type,
             :language,
