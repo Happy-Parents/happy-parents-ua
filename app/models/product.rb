@@ -53,6 +53,10 @@ class Product < ApplicationRecord
   # TODO: verify and debug whether next line is needed
   accepts_nested_attributes_for :books, allow_destroy: true
 
+  def in_stock?
+    drop_shipping_available || stock_balance > 0
+  end
+
   private
 
   def validate_translated_names
