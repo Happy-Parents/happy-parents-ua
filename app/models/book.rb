@@ -33,7 +33,7 @@ class Book < ApplicationRecord
            :price,
            :published,
            :slug,
-           :whearhouse_count,
+           :stock_balance,
            :manufacturer,
            to: :product
   validates :cover_type,

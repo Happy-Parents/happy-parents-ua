@@ -17,7 +17,7 @@ uk:
         authors: автори
         product_price_cents: ціна в копійках
         price: ціна
-        product_whearhouse_count: залишки
+        product_stock_balance: залишки
         product_drop_shipping_available: дроп-шипінг
         product_published: опублікований
         book_categories: категоріїї

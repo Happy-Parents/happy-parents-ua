@@ -10,7 +10,7 @@
 #  price_cents             :integer          not null
 #  published               :boolean          default(FALSE), not null
 #  slug                    :string           not null
-#  whearhouse_count        :integer          not null
+#  stock_balance           :integer          not null
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  manufacturer_id         :bigint
@@ -37,7 +37,7 @@ RSpec.describe Product do
       name_ru
       slug
       price_cents
-      whearhouse_count
+      stock_balance
       inventory_number
     ].each do |attribute|
       it { is_expected.to validate_presence_of(attribute) }
@@ -45,7 +45,7 @@ RSpec.describe Product do
     it { is_expected.to validate_uniqueness_of(:slug).case_insensitive }
     it { is_expected.to validate_uniqueness_of(:inventory_number).case_insensitive }
     it { is_expected.to validate_numericality_of(:price_cents).is_greater_than(0) }
-    it { is_expected.to validate_numericality_of(:whearhouse_count).is_greater_than_or_equal_to(0) }
+    it { is_expected.to validate_numericality_of(:stock_balance).is_greater_than_or_equal_to(0) }
 
     context 'when translated names are not unique for a new record' do
       let(:existing_product) { create(:product) }

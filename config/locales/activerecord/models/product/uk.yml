@@ -13,6 +13,6 @@ uk:
         price: ціна
         published: опублікований
         slug: адреса веб-сторінки
-        whearhouse_count: залишки
+        stock_balance: залишки
         name_uk: назва українською
         name_ru: назва російською

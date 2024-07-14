@@ -13,7 +13,7 @@ ActiveAdmin.register Book do
                   published
                   slug
                   inventory_number
-                  whearhouse_count
+                  stock_balance
                   drop_shipping_available
                   manufacturer_id
                 ],
@@ -27,7 +27,7 @@ ActiveAdmin.register Book do
     column :price do |book|
       book.price.format
     end
-    column :whearhouse_count
+    column :stock_balance
     column :drop_shipping_available
     column :published
     actions default: true do |book|
@@ -55,7 +55,7 @@ ActiveAdmin.register Book do
         end
         row :published
         row :slug
-        row :whearhouse_count
+        row :stock_balance
         row :drop_shipping_available
         row :manufacturer
         row :slug
@@ -95,7 +95,7 @@ ActiveAdmin.register Book do
   filter :product_price_cents, as: :numeric
   filter :product_published, as: :select
   filter :product_slug, as: :string
-  filter :product_whearhouse_count, as: :numeric
+  filter :product_stock_balance, as: :numeric
   filter :product_drop_shipping_available, as: :select
 
   form do |f|
@@ -119,7 +119,7 @@ ActiveAdmin.register Book do
       product_form.input :price, input_html: { value: formatted_price_input(object) },
                                  hint: I18n.t('active_admin.defaults.hints.price_format')
 
-      product_form.input :whearhouse_count
+      product_form.input :stock_balance
       product_form.input :drop_shipping_available
       product_form.input :published
     end
