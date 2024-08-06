@@ -59,7 +59,7 @@ group :development, :test do
   gem 'reek', '~> 6.3'
   gem 'rspec-rails', '~> 6.1'
   gem 'rubocop', '~> 1.64'
-  gem 'rubocop-factory_bot', '~> 2.25', '>= 2.25.1'
+  gem 'rubocop-factory_bot', '~> 2.26'
   gem 'rubocop-faker', '~> 1.1'
   gem 'rubocop-performance', '~> 1.21'
   gem 'rubocop-rails', '~> 2.25'
