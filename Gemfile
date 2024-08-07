@@ -33,6 +33,7 @@ gem 'importmap-rails'
 #   [upgrade guide] https://github.com/heartcombo/devise/wiki/How-To:-Upgrade-to-Devise-4.9.0-%5BHotwire-Turbo-integration%5D
 gem 'turbo-rails'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem 'bootstrap', '~> 5.3.3'
 gem 'sass-rails', '~> 6.0'
 gem 'stimulus-rails'
 
