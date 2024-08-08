@@ -33,7 +33,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <% I18n.available_locales.each do |locale| %>
             <li>
-            <%= button_to t(locale), set_locale_path(locale: locale), class: 'btn btn-light' %>
+            <%= button_to t(locale), set_locale_path(locale: locale), class: 'btn btn-warning' %>
             </li>
             <% end %>
           </ul>
