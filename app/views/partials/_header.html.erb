@@ -20,10 +20,14 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown link
+            <%=I18n.t('views.header.books')%>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Action</a></li>
+          <% @book_categories.each do |book_category| %>
+          <li>
+          <%= link_to book_category.name, book_category_path(book_category.slug), class: 'dropdown-item' %>
+          </li>
+          <% end %>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -33,7 +37,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <% I18n.available_locales.each do |locale| %>
             <li>
-            <%= button_to t(locale), set_locale_path(locale: locale), class: 'btn btn-warning' %>
+            <%= button_to t(locale), set_locale_path(locale: locale), class: 'btn btn-link' %>
             </li>
             <% end %>
           </ul>
