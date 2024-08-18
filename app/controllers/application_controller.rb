@@ -4,6 +4,7 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
   before_action :set_locale
+  before_action :set_book_categories, unless: -> { admin_panel_request? }
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
@@ -20,6 +21,14 @@ class ApplicationController < ActionController::Base
     else
       session[:locale] || default_locale
     end
+  end
+
+  def set_book_categories
+    @book_categories = BookCategory.all
+  end
+
+  def admin_panel_request?
+    request.fullpath.starts_with?('/admin')
   end
 
   def render_not_found(exception)
