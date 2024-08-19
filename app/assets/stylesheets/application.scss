@@ -1,9 +1,19 @@
 @import "bootstrap";
 
+$brand-beige: #FFE9D6;
+$brand-beige-light: #fdfbf8;
+$brand-brown: #5B3816;
+$brand-red: #AF1A1D;
+$brand-orange: #DE9542;
+$brand-purple: #7F3D8A;
+$brand-blue: #5E98C9;
+$brand-green: #A5C136;
+$brand-yellow: #F1CB36;
+
  body {
-  background-color: #fdfbf8;
+  background-color: $brand-beige-light;
 }
  
-bckgrnd-brand {
-  background-color: #f4e5d4;
+h1 {
+  color: $brand-brown;
 }
