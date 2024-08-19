@@ -12,10 +12,10 @@
   </head>
 
   <body>
-    <body>
-  <%= render "partials/header" %>
-    <%= yield %>
-  <%= render "partials/footer" %>
-  </body>
+    <%= render 'partials/header' %>
+      <main>
+        <%= yield %>
+      </main>
+    <%= render 'partials/footer' %>
   </body>
 </html>

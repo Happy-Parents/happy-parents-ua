@@ -10,10 +10,31 @@ $brand-blue: #5E98C9;
 $brand-green: #A5C136;
 $brand-yellow: #F1CB36;
 
- body {
+
+// ======================================= GENERAL ==================================
+html, body {
+  height: 100%;
   background-color: $brand-beige-light;
 }
- 
+
+main {
+  flex-grow: 1;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 h1 {
   color: $brand-brown;
+}
+
+// ======================================= FOOTER ==================================
+footer {
+  background-color: $brand-beige;
+  text-align: center;
+  p {
+    color: $brand-brown;
+  }
 }
