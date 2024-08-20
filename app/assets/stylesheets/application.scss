@@ -1,0 +1,70 @@
+@import "bootstrap";
+
+$brand-beige: #FFE9D6;
+$brand-beige-light: #fdfbf8;
+$brand-brown: #5B3816;
+$brand-red: #AF1A1D;
+$brand-orange: #DE9542;
+$brand-purple: #7F3D8A;
+$brand-blue: #5E98C9;
+$brand-green: #A5C136;
+$brand-yellow: #F1CB36;
+
+
+// ======================================= GENERAL ==================================
+html, body {
+  height: 100%;
+  background-color: $brand-beige-light;
+}
+
+main {
+  flex-grow: 1;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  color: $brand-brown;
+}
+
+// ======================================= HEADER ==================================
+
+.header {
+  background-color: $brand-beige;
+  ul, li, a {
+    color: $brand-brown;
+  }
+  ul, li, a:hover {
+    color: $brand-brown;
+  }
+  .nav-link[aria-expanded="true"]{
+    color: $brand-brown;
+  }
+  .dropdown-menu {
+    background-color: $brand-beige-light;
+  }
+  .dropdown-item:hover {
+    background-color: $brand-beige;
+  }
+  .locales.dropdown-menu {
+    .locale.btn.btn-link {
+      color: $brand-brown;
+      text-decoration: none;
+    }
+    .locale.btn.btn-link:hover {
+      background-color: $brand-beige;
+    }
+  }
+}
+
+// ======================================= FOOTER ==================================
+footer {
+  background-color: $brand-beige;
+  text-align: center;
+  p {
+    color: $brand-brown;
+  }
+}
