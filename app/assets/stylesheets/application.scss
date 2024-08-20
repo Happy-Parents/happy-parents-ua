@@ -49,7 +49,15 @@ h1 {
   .dropdown-item:hover {
     background-color: $brand-beige;
   }
-
+  .locales.dropdown-menu {
+    .locale.btn.btn-link {
+      color: $brand-brown;
+      text-decoration: none;
+    }
+    .locale.btn.btn-link:hover {
+      background-color: $brand-beige;
+    }
+  }
 }
 
 // ======================================= FOOTER ==================================

@@ -61,10 +61,10 @@
             aria-expanded="false">
             <%= t(:lang)%>
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <ul class="locales dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <% I18n.available_locales.each do |locale| %>
             <li>
-            <%= button_to t(locale), set_locale_path(locale: locale), class: 'btn btn-link' %>
+            <%= button_to t(locale), set_locale_path(locale: locale), class: 'locale btn btn-link' %>
             </li>
             <% end %>
           </ul>
