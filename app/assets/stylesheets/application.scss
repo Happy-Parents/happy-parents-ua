@@ -30,6 +30,28 @@ h1 {
   color: $brand-brown;
 }
 
+// ======================================= HEADER ==================================
+
+.header {
+  background-color: $brand-beige;
+  ul, li, a {
+    color: $brand-brown;
+  }
+  ul, li, a:hover {
+    color: $brand-brown;
+  }
+  .nav-link[aria-expanded="true"]{
+    color: $brand-brown;
+  }
+  .dropdown-menu {
+    background-color: $brand-beige-light;
+  }
+  .dropdown-item:hover {
+    background-color: $brand-beige;
+  }
+
+}
+
 // ======================================= FOOTER ==================================
 footer {
   background-color: $brand-beige;
