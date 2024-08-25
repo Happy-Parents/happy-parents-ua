@@ -1,7 +1,0 @@
-<h1><%= t('views.book_categories.index.title')%></h1>
-<ul>
-<% @book_categories.each do |book_category| %>
-<li><%= link_to(book_category.name, book_category_path(slug: book_category.slug)) %></li>
-<% end %>
-</ul>
-<%== pagy_nav(@pagy) %>
