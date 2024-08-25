@@ -36,24 +36,6 @@
         <li class="nav-item dropdown">
           <a
             href="#"
-            id="navbarDropdownMenuLink"
-            class="nav-link dropdown-toggle"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <%=I18n.t('views.header.books')%>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <% @book_categories.each do |book_category| %>
-          <li>
-          <%= link_to book_category.name, book_category_path(book_category.slug), class: 'dropdown-item' %>
-          </li>
-          <% end %>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            href="#"
             class="nav-link dropdown-toggle"
             id="navbarDropdownMenuLink"
             role="button"

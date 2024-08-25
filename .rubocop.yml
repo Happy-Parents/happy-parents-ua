@@ -45,7 +45,6 @@ RSpec/MultipleMemoizedHelpers:
   Exclude:
     - spec/services/resources/publishable/get_for_show_page_spec.rb
     - spec/services/resources/publishable/get_for_index_page_spec.rb
-    - spec/services/resources/book_categories/get_for_show_page_spec.rb
 RSpec/NestedGroups:
   Max: 4
 # ===================== Rails ====================

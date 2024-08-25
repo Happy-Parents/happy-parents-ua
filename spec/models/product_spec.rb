@@ -31,7 +31,6 @@ RSpec.describe Product do
 
   describe 'associations' do
     it { is_expected.to belong_to(:manufacturer).optional }
-    it { is_expected.to have_many(:books) }
   end
 
   describe 'validations' do
