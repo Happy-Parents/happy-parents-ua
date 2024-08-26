@@ -14,12 +14,18 @@
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  manufacturer_id         :bigint
+#  trade_mark_id           :bigint
 #
 # Indexes
 #
 #  index_products_on_inventory_number  (inventory_number) UNIQUE
 #  index_products_on_manufacturer_id   (manufacturer_id)
 #  index_products_on_slug              (slug) UNIQUE
+#  index_products_on_trade_mark_id     (trade_mark_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (trade_mark_id => trade_marks.id)
 #
 require 'rails_helper'
 
@@ -30,7 +36,9 @@ RSpec.describe Product do
   let(:stock_balance) { rand(0..2) }
 
   describe 'associations' do
-    it { is_expected.to belong_to(:manufacturer).optional }
+    %i[manufacturer trade_mark].each do |entity|
+      it { is_expected.to belong_to(entity).optional }
+    end
   end
 
   describe 'validations' do

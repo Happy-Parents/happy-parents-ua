@@ -21,6 +21,7 @@ RSpec.describe TradeMark do
 
   describe 'associations' do
     it { is_expected.to belong_to(:manufacturer).optional }
+    it { is_expected.to have_many(:products).dependent(:nullify) }
   end
 
   describe 'validations' do

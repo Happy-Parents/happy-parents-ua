@@ -18,6 +18,8 @@
 class TradeMark < ApplicationRecord
   include RanSackableAttributable
 
+  has_many :products, dependent: :nullify
+
   # TODO: move association columns to module
   def self.ransackable_associations(_auth_object = nil)
     ['manufacturer']

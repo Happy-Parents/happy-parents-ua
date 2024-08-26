@@ -14,16 +14,21 @@
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  manufacturer_id         :bigint
+#  trade_mark_id           :bigint
 #
 # Indexes
 #
 #  index_products_on_inventory_number  (inventory_number) UNIQUE
 #  index_products_on_manufacturer_id   (manufacturer_id)
 #  index_products_on_slug              (slug) UNIQUE
+#  index_products_on_trade_mark_id     (trade_mark_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (trade_mark_id => trade_marks.id)
 #
 FactoryBot.define do
   factory :product do
-    manufacturer
     sequence(:inventory_number) { |n| "#{FFaker::Lorem.word}-#{n}" }
     sequence(:slug) { |n| "#{FFaker::Lorem.words(2).join('-')}-#{n}" }
     sequence(:name_uk) { |n| "#{FFaker::Lorem.word}-#{n}" }
@@ -39,6 +44,14 @@ FactoryBot.define do
 
     trait :with_unpublished_status do
       published { false }
+    end
+
+    trait :with_manufacturer do
+      manufacturer
+    end
+
+    trait :with_trade_mark do
+      trade_mark
     end
   end
 end

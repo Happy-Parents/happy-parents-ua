@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_25_115845) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_26_131601) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -105,9 +105,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_25_115845) do
     t.boolean "drop_shipping_available", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "trade_mark_id"
     t.index ["inventory_number"], name: "index_products_on_inventory_number", unique: true
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
     t.index ["slug"], name: "index_products_on_slug", unique: true
+    t.index ["trade_mark_id"], name: "index_products_on_trade_mark_id"
   end
 
   create_table "trade_marks", force: :cascade do |t|
@@ -119,4 +121,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_25_115845) do
     t.index ["name", "manufacturer_id"], name: "index_trade_marks_on_name_and_manufacturer_id", unique: true
   end
 
+  add_foreign_key "products", "trade_marks"
 end

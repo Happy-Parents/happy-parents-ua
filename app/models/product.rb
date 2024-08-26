@@ -14,12 +14,18 @@
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  manufacturer_id         :bigint
+#  trade_mark_id           :bigint
 #
 # Indexes
 #
 #  index_products_on_inventory_number  (inventory_number) UNIQUE
 #  index_products_on_manufacturer_id   (manufacturer_id)
 #  index_products_on_slug              (slug) UNIQUE
+#  index_products_on_trade_mark_id     (trade_mark_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (trade_mark_id => trade_marks.id)
 #
 
 # Reprsents basic product entity to be referenced by different product types
@@ -28,6 +34,7 @@ class Product < ApplicationRecord
   extend Mobility
 
   belongs_to :manufacturer, optional: true
+  belongs_to :trade_mark, optional: true
 
   translates :name, type: :string
   monetize :price_cents
