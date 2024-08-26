@@ -33,6 +33,10 @@ FactoryBot.define do
     sequence(:slug) { |n| "#{FFaker::Lorem.words(2).join('-')}-#{n}" }
     sequence(:name_uk) { |n| "#{FFaker::Lorem.word}-#{n}" }
     sequence(:name_ru) { |n| "#{FFaker::Lorem.word}-#{n}" }
+    sequence(:preview_uk) { |n| "#{FFaker::Lorem.sentence}-#{n}" }
+    sequence(:preview_ru) { |n| "#{FFaker::Lorem.sentence}-#{n}" }
+    sequence(:description_uk) { |n| "#{FFaker::Lorem.word}-#{n}" }
+    sequence(:description_ru) { |n| "#{FFaker::Lorem.word}-#{n}" }
     drop_shipping_available { [true, false].sample }
     stock_balance { rand(0..100) }
     price_cents { rand(1..10_000) }

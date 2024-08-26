@@ -45,6 +45,10 @@ RSpec.describe Product do
     %i[
       name_uk
       name_ru
+      preview_uk
+      preview_ru
+      description_uk
+      description_ru
       slug
       price_cents
       stock_balance

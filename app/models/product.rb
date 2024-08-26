@@ -37,14 +37,21 @@ class Product < ApplicationRecord
   belongs_to :trade_mark, optional: true
 
   translates :name, type: :string
+  translates :preview, type: :text
+  translates :description, type: :text
   monetize :price_cents
 
-  # TODO: revise translated names validations and add tests for create/update seperate/botch
+  # TODO: revise translated names validations and add tests for create/update,
+  # Add validation for preview and description
   # validate :validate_translated_names
 
-  # TODO: add uniqueness validation for name_uk & name_ru
+  # TODO: add uniqueness validation for translated attributes
   validates :name_uk,
             :name_ru,
+            :preview_uk,
+            :preview_ru,
+            :description_uk,
+            :description_ru,
             presence: true
 
   # TODO: add slug regex validation
