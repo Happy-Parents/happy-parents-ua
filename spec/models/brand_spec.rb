@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: trade_marks
+# Table name: brands
 #
 #  id              :bigint           not null, primary key
 #  name            :string           not null
@@ -12,12 +12,12 @@
 #
 # Indexes
 #
-#  index_trade_marks_on_manufacturer_id           (manufacturer_id)
-#  index_trade_marks_on_name_and_manufacturer_id  (name,manufacturer_id) UNIQUE
+#  index_brands_on_manufacturer_id           (manufacturer_id)
+#  index_brands_on_name_and_manufacturer_id  (name,manufacturer_id) UNIQUE
 #
 
-RSpec.describe TradeMark do
-  subject(:trade_mark) { build(:trade_mark) }
+RSpec.describe Brand do
+  subject(:brand) { build(:brand) }
 
   describe 'associations' do
     it { is_expected.to belong_to(:manufacturer).optional }

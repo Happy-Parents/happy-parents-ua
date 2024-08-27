@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: trade_marks
+# Table name: brands
 #
 #  id              :bigint           not null, primary key
 #  name            :string           not null
@@ -12,11 +12,11 @@
 #
 # Indexes
 #
-#  index_trade_marks_on_manufacturer_id           (manufacturer_id)
-#  index_trade_marks_on_name_and_manufacturer_id  (name,manufacturer_id) UNIQUE
+#  index_brands_on_manufacturer_id           (manufacturer_id)
+#  index_brands_on_name_and_manufacturer_id  (name,manufacturer_id) UNIQUE
 #
 FactoryBot.define do
-  factory :trade_mark do
+  factory :brand do
     manufacturer
     sequence(:name) { |n| "#{FFaker::Lorem.word}-#{n}" }
   end

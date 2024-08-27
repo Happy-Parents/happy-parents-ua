@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe TradeMarkPolicy do
+RSpec.describe BrandPolicy do
   subject { described_class.new(user, record) }
 
-  let(:record) { TradeMark.new }
+  let(:record) { Brand.new }
 
   describe 'with superadmin permisions' do
     let(:user) { build(:admin, :with_superadmin_role) }

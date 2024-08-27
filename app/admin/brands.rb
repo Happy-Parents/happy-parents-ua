@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ActiveAdmin.register TradeMark do
+ActiveAdmin.register Brand do
   permit_params :name, :manufacturer_id
 
   index download_links: false do
@@ -10,7 +10,7 @@ ActiveAdmin.register TradeMark do
   end
 
   show do
-    h3.trade_mark.name
+    h3.brand.name
     attributes_table do
       row :manufacturer
       row :name

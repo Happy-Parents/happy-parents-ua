@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Defines user permissions to interact with TradeMark entity
-class TradeMarkPolicy < ApplicationPolicy
+class BrandPolicy < ApplicationPolicy
   def index?
     admin_permissions?
   end

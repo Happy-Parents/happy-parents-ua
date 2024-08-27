@@ -23,7 +23,7 @@ class Manufacturer < ApplicationRecord
     ['country']
   end
   belongs_to :country
-  has_many :trade_marks, dependent: :nullify
+  has_many :brands, dependent: :nullify
   has_many :products, dependent: :nullify
 
   validates :name, presence: true,

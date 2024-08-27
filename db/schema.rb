@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_26_131601) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_27_065439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,6 +39,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_26_131601) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "brands", force: :cascade do |t|
+    t.bigint "manufacturer_id"
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["manufacturer_id"], name: "index_brands_on_manufacturer_id"
+    t.index ["name", "manufacturer_id"], name: "index_brands_on_name_and_manufacturer_id", unique: true
   end
 
   create_table "countries", force: :cascade do |t|
@@ -91,21 +100,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_26_131601) do
     t.boolean "drop_shipping_available", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "trade_mark_id"
+    t.bigint "brand_id"
+    t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["inventory_number"], name: "index_products_on_inventory_number", unique: true
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
     t.index ["slug"], name: "index_products_on_slug", unique: true
-    t.index ["trade_mark_id"], name: "index_products_on_trade_mark_id"
   end
 
-  create_table "trade_marks", force: :cascade do |t|
-    t.bigint "manufacturer_id"
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["manufacturer_id"], name: "index_trade_marks_on_manufacturer_id"
-    t.index ["name", "manufacturer_id"], name: "index_trade_marks_on_name_and_manufacturer_id", unique: true
-  end
-
-  add_foreign_key "products", "trade_marks"
+  add_foreign_key "products", "brands"
 end
