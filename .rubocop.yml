@@ -56,3 +56,7 @@ Rails/DynamicFindBy:
   Enabled: false
 Rails/HasAndBelongsToMany:
   Enabled: false
+Rails/CreateTableWithTimestamps:
+  Enabled: true
+  Exclude:
+    - db/migrate/20240827130125_create_categories_products.rb

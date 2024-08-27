@@ -11,6 +11,10 @@
 RSpec.describe Category do
   subject(:category) { build(:category) }
 
+  describe 'associations' do
+    it { is_expected.to have_and_belong_to_many(:product) }
+  end
+
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name_uk) }
     it { is_expected.to validate_presence_of(:name_ru) }

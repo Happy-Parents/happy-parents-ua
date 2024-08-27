@@ -33,6 +33,7 @@ class Product < ApplicationRecord
   include RanSackableAttributable
   extend Mobility
 
+  has_and_belongs_to_many :category
   belongs_to :manufacturer, optional: true
   belongs_to :brand, optional: true
 
