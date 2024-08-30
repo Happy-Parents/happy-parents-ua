@@ -34,6 +34,7 @@ class Product < ApplicationRecord
   extend Mobility
 
   has_and_belongs_to_many :category
+  has_and_belongs_to_many :skills
   belongs_to :manufacturer, optional: true
   belongs_to :brand, optional: true
 

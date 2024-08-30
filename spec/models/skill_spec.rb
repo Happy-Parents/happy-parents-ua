@@ -9,6 +9,10 @@
 RSpec.describe Skill do
   subject(:skill) { build(:skill) }
 
+  describe 'associations' do
+    it { is_expected.to have_and_belong_to_many(:products) }
+  end
+
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name_uk) }
     it { is_expected.to validate_presence_of(:name_ru) }

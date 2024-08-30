@@ -13,6 +13,8 @@ class Skill < ApplicationRecord
   extend Mobility
   translates :name, type: :string
 
+  has_and_belongs_to_many :products
+
   # TODO: add uniquness validation
   validates :name_uk,
             :name_ru,

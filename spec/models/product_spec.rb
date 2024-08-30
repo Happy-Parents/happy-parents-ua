@@ -38,7 +38,10 @@ RSpec.describe Product do
   describe 'associations' do
     %i[manufacturer brand].each do |entity|
       it { is_expected.to belong_to(entity).optional }
-      it { is_expected.to have_and_belong_to_many(:category) }
+    end
+
+    %i[category skills].each do |entity|
+      it { is_expected.to have_and_belong_to_many(entity) }
     end
   end
 
