@@ -27,8 +27,10 @@ ActiveAdmin.register Country do
   end
 
   form do |f|
-    f.input :name_uk
-    f.input :name_ru
+    inputs do
+      f.input :name_uk
+      f.input :name_ru
+    end
     f.actions
   end
 end
