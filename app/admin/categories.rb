@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ActiveAdmin.register Skill do
+ActiveAdmin.register Category do
   permit_params :name_uk, :name_ru
 
   index download_links: false do
@@ -13,7 +13,7 @@ ActiveAdmin.register Skill do
   filter :name_uk
 
   show do
-    h1.skill.name_uk
+    h1.category.name_uk
     attributes_table do
       row :name_uk
       row :name_ru
