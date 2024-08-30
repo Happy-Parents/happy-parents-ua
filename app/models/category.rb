@@ -14,7 +14,7 @@ class Category < ApplicationRecord
   include RanSackableAttributable
   extend Mobility
 
-  has_and_belongs_to_many :product
+  has_and_belongs_to_many :products
 
   translates :name, type: :string
   # TODO: validateuniqueness of translated names

@@ -12,7 +12,7 @@ RSpec.describe Category do
   subject(:category) { build(:category) }
 
   describe 'associations' do
-    it { is_expected.to have_and_belong_to_many(:product) }
+    it { is_expected.to have_and_belong_to_many(:products) }
   end
 
   describe 'validations' do
