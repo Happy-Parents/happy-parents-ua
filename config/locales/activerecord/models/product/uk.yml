@@ -16,3 +16,7 @@ uk:
         stock_balance: залишки
         name_uk: назва українською
         name_ru: назва російською
+        preview_uk: огляд українською
+        preview_ru: огляд російською
+        description_uk: опис українською
+        description_ru: опис російською
