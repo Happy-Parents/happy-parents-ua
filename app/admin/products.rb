@@ -46,7 +46,9 @@ ActiveAdmin.register Product do
     column :stock_balance
     column :drop_shipping_available
     column :published
-    actions
+    actions default: true do |product|
+      show_in_app_link(product_path(slug: product.slug))
+    end
   end
 
   # TODO: setup name translations filters. They doesn't work right now.
