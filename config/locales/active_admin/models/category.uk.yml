@@ -1,0 +1,5 @@
+uk:
+  active_admin:
+    models:
+      category:
+        nested_resources: Товари

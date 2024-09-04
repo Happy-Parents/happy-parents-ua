@@ -9,7 +9,6 @@ ActiveAdmin.register Category do
     actions
   end
 
-  # TODO: setup filter. It doesn't work right now.
   filter :name_uk
 
   show do
@@ -17,6 +16,12 @@ ActiveAdmin.register Category do
     attributes_table do
       row :name_uk
       row :name_ru
+    end
+
+    table_for category.products, I18n.t('active_admin.models.category.nested_resources') do
+      column I18n.t('active_admin.defaults.nested_resources.attribute') do |product|
+        link_to product.name_uk, admin_manufacturer_path(product)
+      end
     end
   end
 
