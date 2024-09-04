@@ -100,4 +100,8 @@ ActiveAdmin.register Product do
     end
     f.actions
   end
+
+  action_item :view, only: :show do
+    show_in_app_link(product_path(slug: resource.slug))
+  end
 end
