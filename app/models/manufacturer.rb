@@ -16,7 +16,7 @@
 #  index_manufacturers_on_name_and_country_id  (name,country_id) UNIQUE
 #
 class Manufacturer < ApplicationRecord
-  include RanSackableAttributable
+  include RansackSearchable
 
   # TODO: move association columns to module
   def self.ransackable_associations(_auth_object = nil)

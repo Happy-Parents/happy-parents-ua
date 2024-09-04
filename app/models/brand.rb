@@ -16,7 +16,7 @@
 #  index_brands_on_name_and_manufacturer_id  (name,manufacturer_id) UNIQUE
 #
 class Brand < ApplicationRecord
-  include RanSackableAttributable
+  include RansackSearchable
 
   has_many :products, dependent: :nullify
 

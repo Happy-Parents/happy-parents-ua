@@ -7,6 +7,7 @@ uk:
     attributes:
       product:
         manufacturer: виробник
+        brand: торгівельна марка
         inventory_number: інвентарний номер
         drop_shipping_available: дроп-шипінг
         price_cents: ціна в копійках

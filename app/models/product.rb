@@ -30,7 +30,7 @@
 
 # Reprsents basic product entity to be referenced by different product types
 class Product < ApplicationRecord
-  include RanSackableAttributable
+  include RansackSearchable
   extend Mobility
 
   has_and_belongs_to_many :categories

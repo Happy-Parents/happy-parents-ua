@@ -93,10 +93,10 @@ ActiveAdmin.register Product do
       f.input :drop_shipping_available
       f.input :stock_balance
       f.input :slug
-      f.input :preview_uk, type: :text
-      f.input :preview_ru, type: :text
-      f.input :description_uk, type: :text
-      f.input :description_ru, type: :text
+      f.input :preview_uk, as: :text
+      f.input :preview_ru, as: :text
+      f.input :description_uk, as: :text
+      f.input :description_ru, as: :text
     end
     f.actions
   end

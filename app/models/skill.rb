@@ -9,7 +9,7 @@
 
 # Represents child's skill that the product develops
 class Skill < ApplicationRecord
-  include RanSackableAttributable
+  include RansackSearchable
   extend Mobility
   translates :name, type: :string
 

@@ -12,7 +12,7 @@
 
 # Represents manufacturer country entity
 class Country < ApplicationRecord
-  include RanSackableAttributable
+  include RansackSearchable
   extend Mobility
   translates :name, type: :string
 
