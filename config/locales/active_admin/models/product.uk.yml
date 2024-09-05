@@ -1,0 +1,7 @@
+uk:
+  active_admin:
+    models:
+      product:
+        filters:
+          labels:
+            categoriy: Категорія

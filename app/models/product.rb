@@ -30,8 +30,21 @@
 
 # Reprsents basic product entity to be referenced by different product types
 class Product < ApplicationRecord
-  include RansackSearchable
   extend Mobility
+  include RansackSearchable
+  ransacker :category_ids do |_parent|
+    Arel::Nodes::SqlLiteral.new(
+      '(SELECT ARRAY_AGG(category_id) FROM categories_products ' \
+      'WHERE categories_products.product_id = products.id)'
+    )
+  end
+  ransacker :category_id_eq, formatter: proc { |category_id| category_id.to_i } do |_parent|
+    Arel.sql(
+      "(#{Product.arel_table.name}.id IN (" \
+      'SELECT product_id FROM categories_products ' \
+      "WHERE category_id = #{category_id})"
+    )
+  end
 
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :skills

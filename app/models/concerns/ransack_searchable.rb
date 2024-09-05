@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 # Ransack needs Model attributes explicitly allowlisted as searchable.
-# Define a `ransackable_attributes` class method in your model.
-# ----------
-# Try to remove this after ActiveAdmin update
 module RansackSearchable
   extend ActiveSupport::Concern
 

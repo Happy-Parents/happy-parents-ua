@@ -14,7 +14,8 @@ ActiveAdmin.register Product do
                 :preview_ru,
                 :description_uk,
                 :description_ru,
-                :manufacturer_id
+                :manufacturer_id,
+                category_ids: []
 
   controller do
     def create
@@ -62,6 +63,9 @@ ActiveAdmin.register Product do
   filter :stock_balance
   filter :brand
   filter :manufacturer
+  filter :categories, as: :select,
+                      collection: proc { Category.all.map { |c| [c.name, c.id] } },
+                      label: I18n.t('active_admin.models.product.filters.labels.categoriy')
 
   show do
     h1.product.name_uk
@@ -79,6 +83,9 @@ ActiveAdmin.register Product do
         product.price.format
       end
       row :slug
+      row :categories do |product|
+        product.categories.map(&:name).join(', ')
+      end
     end
   end
 
@@ -90,6 +97,7 @@ ActiveAdmin.register Product do
       f.input :brand
       f.input :name_uk
       f.input :name_ru
+      f.input :categories, as: :check_boxes, collection: Category.all
       f.input :price, input_html: { value: FormatPriceInputPlaceholder.call(f.object) },
                       hint: I18n.t('active_admin.defaults.hints.price_format')
       f.input :drop_shipping_available
