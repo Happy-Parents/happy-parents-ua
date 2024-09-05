@@ -10,6 +10,7 @@
 # Represents child's skill that the product develops
 class Skill < ApplicationRecord
   include RansackSearchable
+  include RansackMobilitySearchable
   extend Mobility
   translates :name, type: :string
 

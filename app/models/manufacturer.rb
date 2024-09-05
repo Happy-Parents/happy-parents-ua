@@ -17,6 +17,7 @@
 #
 class Manufacturer < ApplicationRecord
   include RansackSearchable
+  include RansackMobilitySearchable
 
   # TODO: move association columns to module
   def self.ransackable_associations(_auth_object = nil)

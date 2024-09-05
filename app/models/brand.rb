@@ -17,6 +17,7 @@
 #
 class Brand < ApplicationRecord
   include RansackSearchable
+  include RansackMobilitySearchable
 
   has_many :products, dependent: :nullify
 
