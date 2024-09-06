@@ -10,6 +10,7 @@
 #  price_cents             :integer          not null
 #  published               :boolean          default(FALSE), not null
 #  slug                    :string           not null
+#  specifications          :jsonb            not null
 #  stock_balance           :integer          not null
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null

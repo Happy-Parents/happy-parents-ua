@@ -16,7 +16,15 @@ ActiveAdmin.register Product do
                 :description_ru,
                 :manufacturer_id,
                 category_ids: [],
-                skill_ids: []
+                skill_ids: [],
+                specifications: %i[
+                  size
+                  weight
+                  smallest_item_size
+                  pages_count
+                  language
+                  authors
+                ]
 
   controller do
     def create
@@ -91,6 +99,7 @@ ActiveAdmin.register Product do
       row :skills do |_skill|
         product.skills.map(&:name).join(', ')
       end
+      row :specifications
     end
   end
 
@@ -113,6 +122,18 @@ ActiveAdmin.register Product do
       f.input :preview_ru, as: :text
       f.input :description_uk, as: :text
       f.input :description_ru, as: :text
+      f.inputs name: I18n.t('active_admin.models.product.labels.specifications'), for: :specifications do |spec|
+        %i[
+          size
+          weight
+          smallest_item_size
+          pages_count
+          language
+          authors
+        ].each do |spec_item|
+          spec.input spec_item, require: false, input_html: { value: product.specifications[spec_item] }
+        end
+      end
     end
     f.actions
   end
