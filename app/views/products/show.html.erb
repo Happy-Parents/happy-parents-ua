@@ -1,1 +1,8 @@
 <h1><%= @product.name %></h1>
+
+<h2><%= I18n.t('views.products.specifications') %>:</h2>
+<ul>
+  <% @product.specifications[I18n.locale.to_s].each do |key, value| %>
+    <li><%= key %>: <%= value%></li>
+  <% end %>
+</ul>

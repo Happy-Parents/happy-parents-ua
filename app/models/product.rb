@@ -35,15 +35,15 @@ class Product < ApplicationRecord
   include RansackSearchable
   include RansackMobilitySearchable
 
-  has_and_belongs_to_many :categories
-  has_and_belongs_to_many :skills
-  belongs_to :manufacturer, optional: true
-  belongs_to :brand, optional: true
-
   translates :name, type: :string
   translates :preview, type: :text
   translates :description, type: :text
   monetize :price_cents
+
+  has_and_belongs_to_many :categories
+  has_and_belongs_to_many :skills
+  belongs_to :manufacturer, optional: true
+  belongs_to :brand, optional: true
 
   # TODO: revise translated names validations and add tests for create/update,
   # Add validation for preview and description

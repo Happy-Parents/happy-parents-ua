@@ -17,30 +17,17 @@ ActiveAdmin.register Product do
                 :manufacturer_id,
                 category_ids: [],
                 skill_ids: [],
-                specifications: %i[
-                  size
-                  weight
-                  smallest_item_size
-                  pages_count
-                  language
-                  authors
-                ]
+                specifications: {}
 
   controller do
-    def create
-      prepare_product_price
-      super
-    end
-
-    def update
-      prepare_product_price
-      super
-    end
+    before_action :prepare_params, only: %i[create update]
 
     private
 
-    def prepare_product_price
-      PreparePriceParams.call(params.require(:product))
+    def prepare_params
+      product_attrs = params.require(:product)
+      PrepareSpecificationsParams.call(product_attrs)
+      PreparePriceParams.call(product_attrs)
     end
   end
 
@@ -61,7 +48,6 @@ ActiveAdmin.register Product do
     end
   end
 
-  # TODO: setup name translations filters. They doesn't work right now.
   filter :name_uk
   filter :name_ru
   filter :drop_shipping_available
@@ -122,18 +108,19 @@ ActiveAdmin.register Product do
       f.input :preview_ru, as: :text
       f.input :description_uk, as: :text
       f.input :description_ru, as: :text
-      f.inputs name: I18n.t('active_admin.models.product.labels.specifications'), for: :specifications do |spec|
-        %i[
-          size
-          weight
-          smallest_item_size
-          pages_count
-          language
-          authors
-        ].each do |spec_item|
-          spec.input spec_item, require: false, input_html: { value: product.specifications[spec_item] }
-        end
-      end
+      f.input :specifications, as: :jsonb
+      # f.inputs name: I18n.t('active_admin.models.product.labels.specifications'), for: :specifications do |spec|
+      #   %i[
+      #     size
+      #     weight
+      #     smallest_item_size
+      #     pages_count
+      #     language
+      #     authors
+      #   ].each do |spec_item|
+      #     spec.input spec_item, require: false, input_html: { value: product.specifications[spec_item] }
+      #   end
+      # end
     end
     f.actions
   end

@@ -113,7 +113,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_06_060539) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "brand_id"
-    t.jsonb "specifications", default: {}, null: false
+    t.jsonb "specifications", default: {"ru"=>{}, "uk"=>{}}, null: false
     t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["inventory_number"], name: "index_products_on_inventory_number", unique: true
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"

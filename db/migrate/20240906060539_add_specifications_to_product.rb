@@ -2,6 +2,6 @@
 
 class AddSpecificationsToProduct < ActiveRecord::Migration[7.1]
   def change
-    add_column :products, :specifications, :jsonb, null: false, default: {}
+    add_column :products, :specifications, :jsonb, null: false, default: { uk: {}, ru: {} }
   end
 end
