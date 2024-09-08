@@ -5,6 +5,7 @@
 # Table name: products
 #
 #  id                      :bigint           not null, primary key
+#  age_range               :integer
 #  drop_shipping_available :boolean          default(FALSE), not null
 #  inventory_number        :string           not null
 #  price_cents             :integer          not null
@@ -42,6 +43,7 @@ FactoryBot.define do
     stock_balance { rand(0..100) }
     price_cents { rand(1..10_000) }
     published { [true, false].sample }
+    age_range { rand(0..5) }
 
     trait :with_published_status do
       published { true }

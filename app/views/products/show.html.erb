@@ -4,6 +4,9 @@
 <% else %>
 <p><%= I18n.t('views.products.unavailable') %></p>
 <% end %>
+<% if @product.age_range%>
+    <h2><%= formatted_age_range(@product) %></h2>
+<% end %>
 <% if @product.manufacturer%>
     <h2><%= I18n.t('views.products.manufacturer') %>: <%= @product.manufacturer.name %></h2>
 <% end %>

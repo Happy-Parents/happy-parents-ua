@@ -15,6 +15,7 @@ ActiveAdmin.register Product do
                 :description_uk,
                 :description_ru,
                 :manufacturer_id,
+                :age_range,
                 category_ids: [],
                 skill_ids: [],
                 specifications: {}
@@ -62,6 +63,12 @@ ActiveAdmin.register Product do
                       collection: proc { Category.all.map { |c| [c.name, c.id] } }
   filter :skills, as: :select,
                   collection: proc { Skill.all.map { |s| [s.name, s.id] } }
+  filter :age_range, as: :select,
+                     collection: proc {
+                                   Product.age_ranges.keys.map do |key|
+                                     enum_translation(:product, :age_range, key)
+                                   end
+                                 }
 
   show do
     h1.product.name_uk
@@ -85,6 +92,9 @@ ActiveAdmin.register Product do
       row :skills do |_skill|
         product.skills.map(&:name).join(', ')
       end
+      row :age_range do |product|
+        enum_translation(:product, :age_range, product.age_range)
+      end
       row :specifications
     end
   end
@@ -99,6 +109,7 @@ ActiveAdmin.register Product do
       f.input :name_ru
       f.input :categories, as: :check_boxes, collection: Category.all
       f.input :skills, as: :check_boxes, collection: Skill.all
+      f.input :age_range, collection: translated_collection('product', 'age_range')
       f.input :price, input_html: { value: FormatPriceInputPlaceholder.call(f.object) },
                       hint: I18n.t('active_admin.defaults.hints.price_format')
       f.input :drop_shipping_available
@@ -109,18 +120,6 @@ ActiveAdmin.register Product do
       f.input :description_uk, as: :text
       f.input :description_ru, as: :text
       f.input :specifications, as: :jsonb
-      # f.inputs name: I18n.t('active_admin.models.product.labels.specifications'), for: :specifications do |spec|
-      #   %i[
-      #     size
-      #     weight
-      #     smallest_item_size
-      #     pages_count
-      #     language
-      #     authors
-      #   ].each do |spec_item|
-      #     spec.input spec_item, require: false, input_html: { value: product.specifications[spec_item] }
-      #   end
-      # end
     end
     f.actions
   end

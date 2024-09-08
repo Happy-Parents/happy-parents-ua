@@ -3,6 +3,7 @@ detectors:
   UtilityFunction:
     exclude:
       - 'ActiveAdmin::ViewsHelper'
+      - 'ProductsHelper'
   IrresponsibleModule:
     exclude:
       - 'HappyParentsUa::Application'

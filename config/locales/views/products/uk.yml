@@ -10,3 +10,5 @@ uk:
       skills: Розвиває навички
       manufacturer: Виробник 
       brand: Бренд
+      age_range: "Вікова ктегорія: %{range} р."
+      age_range_baby: "Вікова ктегорія: немовля"

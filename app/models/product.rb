@@ -5,6 +5,7 @@
 # Table name: products
 #
 #  id                      :bigint           not null, primary key
+#  age_range               :integer
 #  drop_shipping_available :boolean          default(FALSE), not null
 #  inventory_number        :string           not null
 #  price_cents             :integer          not null
@@ -66,6 +67,8 @@ class Product < ApplicationRecord
 
   validates :price_cents, presence: true, numericality: { greater_than: 0 }
   validates :stock_balance, presence: true, numericality: { greater_than_or_equal_to: 0 }
+
+  enum age_range: { baby: 0, '1-3': 1, '3-5': 2, '5-7': 3, '7-14': 4, '14+': 5 }
 
   def in_stock?
     drop_shipping_available || stock_balance > 0
