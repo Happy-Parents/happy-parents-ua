@@ -2,3 +2,11 @@ uk:
   views:
     products:
       specifications: Характеристики
+      price: Ціна
+      available: В наявності
+      unavailable: розпродано
+      description: Опис
+      categories: Категорії
+      skills: Розвиває навички
+      manufacturer: Виробник 
+      brand: Бренд
