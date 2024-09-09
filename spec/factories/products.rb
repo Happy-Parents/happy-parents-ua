@@ -7,6 +7,7 @@
 #  id                      :bigint           not null, primary key
 #  age_range               :integer
 #  drop_shipping_available :boolean          default(FALSE), not null
+#  gender_target           :integer          default("both"), not null
 #  inventory_number        :string           not null
 #  price_cents             :integer          not null
 #  published               :boolean          default(FALSE), not null
@@ -44,6 +45,7 @@ FactoryBot.define do
     price_cents { rand(1..10_000) }
     published { [true, false].sample }
     age_range { rand(0..5) }
+    gender_target { rand(0..2) }
 
     trait :with_published_status do
       published { true }

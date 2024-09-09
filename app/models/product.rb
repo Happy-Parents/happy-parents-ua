@@ -7,6 +7,7 @@
 #  id                      :bigint           not null, primary key
 #  age_range               :integer
 #  drop_shipping_available :boolean          default(FALSE), not null
+#  gender_target           :integer          default("both"), not null
 #  inventory_number        :string           not null
 #  price_cents             :integer          not null
 #  published               :boolean          default(FALSE), not null
@@ -57,6 +58,7 @@ class Product < ApplicationRecord
             :preview_ru,
             :description_uk,
             :description_ru,
+            :gender_target,
             presence: true
 
   # TODO: add slug regex validation
@@ -69,6 +71,7 @@ class Product < ApplicationRecord
   validates :stock_balance, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
   enum age_range: { baby: 0, '1-3': 1, '3-5': 2, '5-7': 3, '7-14': 4, '14+': 5 }
+  enum gender_target: { both: 0, boys: 1, girls: 2 }
 
   def in_stock?
     drop_shipping_available || stock_balance > 0

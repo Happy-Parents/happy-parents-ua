@@ -7,6 +7,7 @@
 #  id                      :bigint           not null, primary key
 #  age_range               :integer
 #  drop_shipping_available :boolean          default(FALSE), not null
+#  gender_target           :integer          default("both"), not null
 #  inventory_number        :string           not null
 #  price_cents             :integer          not null
 #  published               :boolean          default(FALSE), not null
@@ -91,6 +92,7 @@ RSpec.describe Product do
   end
 
   it { is_expected.to define_enum_for(:age_range).with_values([:baby, '1-3', '3-5', '5-7', '7-14', '14+']) }
+  it { is_expected.to define_enum_for(:gender_target).with_values(%i[both boys girls]) }
 
   describe 'instance methods' do
     describe '#in_stock?' do

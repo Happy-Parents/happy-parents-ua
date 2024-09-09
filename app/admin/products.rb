@@ -16,6 +16,7 @@ ActiveAdmin.register Product do
                 :description_ru,
                 :manufacturer_id,
                 :age_range,
+                :gender_target,
                 category_ids: [],
                 skill_ids: [],
                 specifications: {}
@@ -69,6 +70,12 @@ ActiveAdmin.register Product do
                                      enum_translation(:product, :age_range, key)
                                    end
                                  }
+  filter :gender_target, as: :select,
+                         collection: proc {
+                                       Product.gender_targets.keys.map do |key|
+                                         enum_translation(:product, :gender_target, key)
+                                       end
+                                     }
 
   show do
     h1.product.name_uk
@@ -95,6 +102,9 @@ ActiveAdmin.register Product do
       row :age_range do |product|
         enum_translation(:product, :age_range, product.age_range)
       end
+      row :gender_target do |product|
+        enum_translation(:product, :gender_target, product.gender_target)
+      end
       row :specifications
     end
   end
@@ -110,6 +120,7 @@ ActiveAdmin.register Product do
       f.input :categories, as: :check_boxes, collection: Category.all
       f.input :skills, as: :check_boxes, collection: Skill.all
       f.input :age_range, collection: translated_collection('product', 'age_range')
+      f.input :gender_target, collection: translated_collection('product', 'gender_target')
       f.input :price, input_html: { value: FormatPriceInputPlaceholder.call(f.object) },
                       hint: I18n.t('active_admin.defaults.hints.price_format')
       f.input :drop_shipping_available
