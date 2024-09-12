@@ -60,5 +60,7 @@ Rails/CreateTableWithTimestamps:
   Enabled: true
   Exclude:
     - db/migrate/20240830072727_create_skills.rb
+    - db/migrate/20240911142851_create_materials.rb
     - db/migrate/20240827130125_create_categories_products.rb
     - db/migrate/20240830091252_create_products_skills.rb
+    - db/migrate/20240911152001_create_materials_products.rb

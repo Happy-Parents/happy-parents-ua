@@ -18,17 +18,20 @@
 #  updated_at              :datetime         not null
 #  brand_id                :bigint
 #  manufacturer_id         :bigint
+#  material_id             :bigint
 #
 # Indexes
 #
 #  index_products_on_brand_id          (brand_id)
 #  index_products_on_inventory_number  (inventory_number) UNIQUE
 #  index_products_on_manufacturer_id   (manufacturer_id)
+#  index_products_on_material_id       (material_id)
 #  index_products_on_slug              (slug) UNIQUE
 #
 # Foreign Keys
 #
 #  fk_rails_...  (brand_id => brands.id)
+#  fk_rails_...  (material_id => materials.id)
 #
 
 # Reprsents basic product entity to be referenced by different product types
@@ -46,6 +49,7 @@ class Product < ApplicationRecord
   has_and_belongs_to_many :skills
   belongs_to :manufacturer, optional: true
   belongs_to :brand, optional: true
+  belongs_to :material, optional: true
 
   # TODO: revise translated names validations and add tests for create/update,
   # Add validation for preview and description

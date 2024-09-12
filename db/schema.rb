@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_09_120945) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_11_160340) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,6 +77,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_09_120945) do
     t.index ["name", "country_id"], name: "index_manufacturers_on_name_and_country_id", unique: true
   end
 
+  create_table "materials", force: :cascade do |t|
+  end
+
   create_table "mobility_string_translations", force: :cascade do |t|
     t.string "locale", null: false
     t.string "key", null: false
@@ -116,9 +119,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_09_120945) do
     t.jsonb "specifications", default: {"ru"=>{}, "uk"=>{}}, null: false
     t.integer "age_range"
     t.integer "gender_target", default: 0, null: false
+    t.bigint "material_id"
     t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["inventory_number"], name: "index_products_on_inventory_number", unique: true
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
+    t.index ["material_id"], name: "index_products_on_material_id"
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
@@ -133,4 +138,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_09_120945) do
   end
 
   add_foreign_key "products", "brands"
+  add_foreign_key "products", "materials"
 end

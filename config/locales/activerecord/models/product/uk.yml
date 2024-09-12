@@ -23,6 +23,7 @@ uk:
         description_ru: опис російською
         categories: категорії
         skills: навички
+        material: матеріал
         specifications: характеристики
         age_range: вікова категорія
         gender_target: для статі

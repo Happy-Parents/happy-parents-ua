@@ -18,20 +18,24 @@
 #  updated_at              :datetime         not null
 #  brand_id                :bigint
 #  manufacturer_id         :bigint
+#  material_id             :bigint
 #
 # Indexes
 #
 #  index_products_on_brand_id          (brand_id)
 #  index_products_on_inventory_number  (inventory_number) UNIQUE
 #  index_products_on_manufacturer_id   (manufacturer_id)
+#  index_products_on_material_id       (material_id)
 #  index_products_on_slug              (slug) UNIQUE
 #
 # Foreign Keys
 #
 #  fk_rails_...  (brand_id => brands.id)
+#  fk_rails_...  (material_id => materials.id)
 #
 FactoryBot.define do
   factory :product do
+    material
     sequence(:inventory_number) { |n| "#{FFaker::Lorem.word}-#{n}" }
     sequence(:slug) { |n| "#{FFaker::Lorem.words(2).join('-')}-#{n}" }
     sequence(:name_uk) { |n| "#{FFaker::Lorem.word}-#{n}" }

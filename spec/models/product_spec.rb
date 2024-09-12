@@ -18,17 +18,20 @@
 #  updated_at              :datetime         not null
 #  brand_id                :bigint
 #  manufacturer_id         :bigint
+#  material_id             :bigint
 #
 # Indexes
 #
 #  index_products_on_brand_id          (brand_id)
 #  index_products_on_inventory_number  (inventory_number) UNIQUE
 #  index_products_on_manufacturer_id   (manufacturer_id)
+#  index_products_on_material_id       (material_id)
 #  index_products_on_slug              (slug) UNIQUE
 #
 # Foreign Keys
 #
 #  fk_rails_...  (brand_id => brands.id)
+#  fk_rails_...  (material_id => materials.id)
 #
 require 'rails_helper'
 
@@ -39,7 +42,7 @@ RSpec.describe Product do
   let(:stock_balance) { rand(0..2) }
 
   describe 'associations' do
-    %i[manufacturer brand].each do |entity|
+    %i[manufacturer brand material].each do |entity|
       it { is_expected.to belong_to(entity).optional }
     end
 

@@ -15,6 +15,7 @@ ActiveAdmin.register Product do
                 :description_uk,
                 :description_ru,
                 :manufacturer_id,
+                :material_id,
                 :age_range,
                 :gender_target,
                 category_ids: [],
@@ -60,10 +61,9 @@ ActiveAdmin.register Product do
   filter :stock_balance
   filter :brand
   filter :manufacturer
-  filter :categories, as: :select,
-                      collection: proc { Category.all.map { |c| [c.name, c.id] } }
-  filter :skills, as: :select,
-                  collection: proc { Skill.all.map { |s| [s.name, s.id] } }
+  filter :material
+  filter :categories, as: :select, collection: proc { Category.all.map { |c| [c.name, c.id] } }
+  filter :skills, as: :select, collection: proc { Skill.all.map { |s| [s.name, s.id] } }
   filter :age_range, as: :select,
                      collection: proc {
                                    Product.age_ranges.keys.map do |key|
@@ -84,6 +84,7 @@ ActiveAdmin.register Product do
       row :inventory_number
       row :published
       row :manufacturer
+      row :material
       row :brand
       row :name_uk
       row :name_ru
@@ -114,6 +115,7 @@ ActiveAdmin.register Product do
       f.input :published
       f.input :inventory_number
       f.input :manufacturer
+      f.input :material
       f.input :brand
       f.input :name_uk
       f.input :name_ru
