@@ -45,6 +45,7 @@ class Product < ApplicationRecord
   translates :description, type: :text
   monetize :price_cents
 
+  has_many_attached :images
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :skills
   belongs_to :manufacturer, optional: true

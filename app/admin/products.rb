@@ -18,6 +18,7 @@ ActiveAdmin.register Product do
                 :material_id,
                 :age_range,
                 :gender_target,
+                { images: [] },
                 category_ids: [],
                 skill_ids: [],
                 specifications: {}
@@ -128,6 +129,9 @@ ActiveAdmin.register Product do
       f.input :drop_shipping_available
       f.input :stock_balance
       f.input :slug
+      f.input :images, as: :file, input_html: { multiple: true }, hint: f.object.images.map { |img|
+                                                                          image_tag url_for(img), size: '100x100'
+                                                                        }.join(', ').html_safe
       f.input :preview_uk, as: :text
       f.input :preview_ru, as: :text
       f.input :description_uk, as: :text
