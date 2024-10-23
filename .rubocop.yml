@@ -56,6 +56,11 @@ RSpec/MultipleMemoizedHelpers:
 RSpec/NestedGroups:
   Max: 4
 # ===================== Rails ====================
+Rails/I18nLocaleTexts:
+  Enabled: true
+  Exclude:
+    - app/admin/**/*
+
 Rails/DynamicFindBy:
   Enabled: false
 Rails/HasAndBelongsToMany:

@@ -18,20 +18,44 @@ ActiveAdmin.register Product do
                 :material_id,
                 :age_range,
                 :gender_target,
-                { images: [] },
+                images: [],
                 category_ids: [],
                 skill_ids: [],
                 specifications: {}
 
   controller do
-    before_action :prepare_params, only: %i[create update]
+    before_action :prepare_create_params, only: :create
+    before_action :prepare_update_params, only: :update
+
+    def delete_image
+      product = DeleteProductImage.call(**delete_params)
+
+      redirect_back fallback_location: edit_admin_product_path(product),
+                    notice: 'Зображення видалено.'
+    end
 
     private
 
-    def prepare_params
-      product_attrs = params.require(:product)
+    def prepare_create_params
       PrepareSpecificationsParams.call(product_attrs)
       PreparePriceParams.call(product_attrs)
+    end
+
+    def prepare_update_params
+      PrepareSpecificationsParams.call(product_attrs)
+      PreparePriceParams.call(product_attrs)
+      PrepareImagesParams.call(params)
+    end
+
+    def product_attrs
+      params.require(:product)
+    end
+
+    def delete_params
+      {
+        id: params.require(:id),
+        image_id: params.require(:image_id)
+      }
     end
   end
 
@@ -87,6 +111,20 @@ ActiveAdmin.register Product do
       row :manufacturer
       row :material
       row :brand
+      row :images do
+        div style: 'display: flex; flex-wrap: wrap;' do
+          product.images.each do |img|
+            div style: 'margin-right: 10px; text-align: center;' do
+              div do
+                image_tag url_for(img), style: 'height: 50px; width: auto;'
+              end
+              div do
+                link_to 'Завантажити', rails_blob_path(img, disposition: 'attachment'), class: 'download-link'
+              end
+            end
+          end
+        end
+      end
       row :name_uk
       row :name_ru
       row :drop_shipping_available
@@ -129,9 +167,26 @@ ActiveAdmin.register Product do
       f.input :drop_shipping_available
       f.input :stock_balance
       f.input :slug
-      f.input :images, as: :file, input_html: { multiple: true }, hint: f.object.images.map { |img|
-                                                                          image_tag url_for(img), size: '100x100'
-                                                                        }.join(', ').html_safe
+
+      # Показуємо існуючі зображення з можливістю їх видалити
+      if f.object.images.attached?
+        div style: 'display: flex; flex-wrap: wrap; gap: 10px;' do
+          f.object.images.each_with_index do |img, _index|
+            div style: 'display: inline-block; margin-right: 10px; text-align: center;' do
+              div do
+                image_tag(url_for(img), style: 'height: 100px; width: auto; margin-bottom: 5px;')
+              end
+              div do
+                link_to 'Видалити', delete_image_admin_product_path(f.object, image_id: img.id),
+                        method: :delete,
+                        data: { confirm: 'Видалити зображення?' }
+              end
+            end
+          end
+        end
+      end
+
+      f.input :images, as: :file, input_html: { multiple: true }, hint: 'Вибір нових замінює існуючі'
       f.input :preview_uk, as: :text
       f.input :preview_ru, as: :text
       f.input :description_uk, as: :text
