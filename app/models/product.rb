@@ -82,6 +82,18 @@ class Product < ApplicationRecord
     drop_shipping_available || stock_balance > 0
   end
 
+  def thumbnails
+    images.map do |image|
+      image.variant(resize_to_limit: [50, 50]).processed
+    end
+  end
+
+  def display_images
+    images.map do |image|
+      image.variant(resize_to_limit: [150, 150]).processed
+    end
+  end
+
   private
 
   def validate_translated_names

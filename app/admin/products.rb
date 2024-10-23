@@ -113,13 +113,13 @@ ActiveAdmin.register Product do
       row :brand
       row :images do
         div style: 'display: flex; flex-wrap: wrap;' do
-          product.images.each do |img|
+          product.thumbnails.each do |thumb|
             div style: 'margin-right: 10px; text-align: center;' do
               div do
-                image_tag url_for(img), style: 'height: 50px; width: auto;'
+                image_tag url_for(thumb), style: 'height: 50px; width: auto;'
               end
               div do
-                link_to 'Завантажити', rails_blob_path(img, disposition: 'attachment'), class: 'download-link'
+                link_to 'Завантажити', rails_blob_path(thumb.blob, disposition: 'attachment'), class: 'download-link'
               end
             end
           end
@@ -171,13 +171,13 @@ ActiveAdmin.register Product do
       # Показуємо існуючі зображення з можливістю їх видалити
       if f.object.images.attached?
         div style: 'display: flex; flex-wrap: wrap; gap: 10px;' do
-          f.object.images.each_with_index do |img, _index|
+          f.object.thumbnails.each_with_index do |thumb, _index|
             div style: 'display: inline-block; margin-right: 10px; text-align: center;' do
               div do
-                image_tag(url_for(img), style: 'height: 100px; width: auto; margin-bottom: 5px;')
+                image_tag(url_for(thumb), style: 'height: 50px; width: auto; margin-bottom: 5px;')
               end
               div do
-                link_to 'Видалити', delete_image_admin_product_path(f.object, image_id: img.id),
+                link_to 'Видалити', delete_image_admin_product_path(f.object, image_id: thumb.blob.id),
                         method: :delete,
                         data: { confirm: 'Видалити зображення?' }
               end
