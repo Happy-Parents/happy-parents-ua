@@ -66,5 +66,13 @@ FactoryBot.define do
     trait :with_brand do
       brand
     end
+
+    trait :with_image do
+      after(:build) do |product|
+        product.images.attach(io: Rails.root.join('spec/fixtures/files/1kb.png').open,
+                              filename: 'test_image.png',
+                              content_type: 'image/png')
+      end
+    end
   end
 end

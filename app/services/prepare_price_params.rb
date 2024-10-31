@@ -3,9 +3,12 @@
 # Responsible for preparing price paramater in product create/update form in admin panel
 module PreparePriceParams
   def self.call(product_attrs)
-    specifications_params = product_attrs[:specifications]
+    price_params = product_attrs['price']
 
-    product_attrs[:specifications] = JSON.parse(specifications_params) if specifications_params.present?
+    if price_params.present?
+      product_attrs['price_cents'] = Actions::PriceToCents.call(price_params)
+      product_attrs.delete('price')
+    end
 
     product_attrs
   end
