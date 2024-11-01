@@ -20,7 +20,7 @@ gem 'puma', '>= 5.0'
 gem 'pundit', '~> 2.3', '>= 2.3.1'
 gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
 gem 'rails-i18n', '~> 7.0', '>= 7.0.9'
-gem 'sidekiq', '~> 7.2'
+gem 'sidekiq', '~> 7.3'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
 # ASSETS
