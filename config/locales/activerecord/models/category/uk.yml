@@ -1,0 +1,10 @@
+uk:
+  activerecord:
+    models:
+      category:
+        one: Категорія
+        other: Категорії
+    attributes:
+      category:
+        name_uk: Назва українською
+        name_ru: Назва російською

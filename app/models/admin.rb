@@ -22,7 +22,7 @@
 
 # Represents application administrator entity
 class Admin < ApplicationRecord
-  include RanSackableAttributable
+  include RansackSearchable
 
   devise :database_authenticatable, :recoverable, :rememberable, :validatable
 

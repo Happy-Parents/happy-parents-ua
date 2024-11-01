@@ -7,3 +7,5 @@ uk:
         show_in_app: ↗️відкрити
       hints:
         price_format: 'напр.: 100, 25.50'
+      nested_resources:
+        attribute: Назва

@@ -16,10 +16,11 @@ ActiveAdmin.register Manufacturer do
       row :name
     end
 
+    # TODO: I18n
     panel 'Торгівельні марки' do
-      table_for manufacturer.trade_marks do
-        column 'Назва' do |trade_mark|
-          link_to trade_mark.name, admin_trade_mark_path(trade_mark)
+      table_for manufacturer.brands do
+        column 'Назва' do |brand|
+          link_to brand.name, admin_brand_path(brand)
         end
       end
     end

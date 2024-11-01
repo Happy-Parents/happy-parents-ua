@@ -7,6 +7,7 @@ ruby '3.3.2'
 gem 'rails', '~> 7.2.1'
 
 gem 'activeadmin', '~> 3.2'
+gem 'activeadmin_json_editor', '~> 0.0.10'
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise', '~> 4.9'
 gem 'devise-i18n', '~> 1.12'
@@ -46,8 +47,8 @@ gem 'stimulus-rails'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem 'aws-sdk-s3', '~> 1.167', require: false
+gem 'image_processing', '~> 1.13'
 
 group :development, :test do
   gem 'awesome_print', '~> 1.9', '>= 1.9.2'
@@ -58,7 +59,7 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6.4', '>= 6.4.3'
   gem 'ffaker', '~> 2.23'
   gem 'reek', '~> 6.3'
-  gem 'rspec-rails', '~> 6.1'
+  gem 'rspec-rails', '~> 7.0'
   gem 'rubocop', '~> 1.64'
   gem 'rubocop-factory_bot', '~> 2.26'
   gem 'rubocop-faker', '~> 1.1'

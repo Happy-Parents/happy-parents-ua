@@ -22,7 +22,15 @@ Style/Documentation:
     - app/helpers/application_helper.rb
     - app/mailers/application_mailer.rb
     - app/models/application_record.rb
+Style/SymbolProc:
+  Enabled: true
+  Exclude:
+    - db/**/*
 # ===================== Metrics ====================
+Metrics/AbcSize:
+  Enabled: true
+  Exclude:
+    - db/migrate/20241013142237_create_active_storage_tables.active_storage.rb
 Metrics/MethodLength:
   Enabled: true
   Exclude:
@@ -48,7 +56,21 @@ RSpec/MultipleMemoizedHelpers:
 RSpec/NestedGroups:
   Max: 4
 # ===================== Rails ====================
+Rails/I18nLocaleTexts:
+  Enabled: true
+  Exclude:
+    - app/admin/**/*
+
 Rails/DynamicFindBy:
   Enabled: false
 Rails/HasAndBelongsToMany:
   Enabled: false
+Rails/CreateTableWithTimestamps:
+  Enabled: true
+  Exclude:
+    - db/migrate/20240830072727_create_skills.rb
+    - db/migrate/20240911142851_create_materials.rb
+    - db/migrate/20240827130125_create_categories_products.rb
+    - db/migrate/20240830091252_create_products_skills.rb
+    - db/migrate/20240911152001_create_materials_products.rb
+    - db/migrate/20241013142237_create_active_storage_tables.active_storage.rb

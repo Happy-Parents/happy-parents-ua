@@ -16,14 +16,15 @@
 #  index_manufacturers_on_name_and_country_id  (name,country_id) UNIQUE
 #
 class Manufacturer < ApplicationRecord
-  include RanSackableAttributable
+  include RansackSearchable
+  include RansackMobilitySearchable
 
   # TODO: move association columns to module
   def self.ransackable_associations(_auth_object = nil)
     ['country']
   end
   belongs_to :country
-  has_many :trade_marks, dependent: :nullify
+  has_many :brands, dependent: :nullify
   has_many :products, dependent: :nullify
 
   validates :name, presence: true,

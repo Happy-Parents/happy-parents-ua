@@ -1,0 +1,10 @@
+uk:
+  activerecord:
+    models:
+      skill:
+        one: навичка
+        other: Навички
+    attributes:
+      skill:
+        name_uk: Назва українською
+        name_ru: Назва російською
