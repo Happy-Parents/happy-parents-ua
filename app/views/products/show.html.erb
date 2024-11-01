@@ -1,0 +1,46 @@
+<h1><%= @product.name %></h1>
+<% if @product.in_stock? %>
+<p><%= I18n.t('views.products.available') %></p>
+<% else %>
+<p><%= I18n.t('views.products.unavailable') %></p>
+<% end %>
+<% if @product.age_range%>
+    <h2><%= formatted_age_range(@product) %></h2>
+<% end %>
+<% if @product.manufacturer%>
+    <h2><%= I18n.t('views.products.manufacturer') %>: <%= @product.manufacturer.name %></h2>
+<% end %>
+<% if @product.brand%>
+    <h2><%= I18n.t('views.products.brand') %>: <%= @product.brand.name %></h2>
+<% end %>
+<h2><%= I18n.t('views.products.price') %>: <%= @product.price.format %></h2>
+
+<p><%= @product.preview %></p>
+
+<ul>
+  <% @product.display_images.each do |image|%>
+    <li> <%= image_tag(image)%> </li>
+  <%end%>
+</ul>
+
+<h2><%= I18n.t('views.products.description') %>:</h2>
+<p><%= @product.description.html_safe %></p>
+<h2><%= I18n.t('views.products.categories') %>:</h2>
+<ul>
+  <% @product.categories.each do |category| %>
+    <li><%= category.name %></li>
+  <% end %>
+</ul>
+<h2><%= I18n.t('views.products.skills') %>:</h2>
+<ul>
+  <% @product.skills.each do |skill| %>
+    <li><%= skill.name %></li>
+  <% end %>
+</ul>
+
+<h2><%= I18n.t('views.products.specifications') %>:</h2>
+<ul>
+  <% @product.specifications[I18n.locale.to_s].each do |key, value| %>
+    <li><%= key %>: <%= value%></li>
+  <% end %>
+</ul>

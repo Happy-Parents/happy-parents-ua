@@ -1,0 +1,10 @@
+uk:
+  activerecord:
+    models:
+      material:
+        one: Матеріал
+        other: Матеріали
+    attributes:
+      material:
+        name_uk: Назва українською
+        name_ru: Назва російською

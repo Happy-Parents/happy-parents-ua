@@ -12,10 +12,12 @@
 
 # Represents manufacturer country entity
 class Country < ApplicationRecord
-  include RanSackableAttributable
+  include RansackSearchable
+  include RansackMobilitySearchable
   extend Mobility
-  has_many :manufacturers, dependent: :nullify
   translates :name, type: :string
+
+  has_many :manufacturers, dependent: :nullify
 
   validates :name_uk,
             :name_ru,

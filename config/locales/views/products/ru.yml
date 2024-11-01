@@ -1,0 +1,13 @@
+ru:
+  views:
+    products:
+      specifications: Характеристики
+      price: Цена
+      available: В наличии
+      unavailable: разпродано
+      description: описание
+      categories: Категории
+      skills: Развивает навыки
+      manufacurer: Производитель 
+      brand: Бренд
+      age_range: Возрастаная категория

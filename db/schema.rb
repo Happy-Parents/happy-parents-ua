@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_25_115845) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_13_142237) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,34 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_25_115845) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
   end
 
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -39,6 +67,27 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_25_115845) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "brands", force: :cascade do |t|
+    t.bigint "manufacturer_id"
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["manufacturer_id"], name: "index_brands_on_manufacturer_id"
+    t.index ["name", "manufacturer_id"], name: "index_brands_on_name_and_manufacturer_id", unique: true
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories_products", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_categories_products_on_category_id"
+    t.index ["product_id"], name: "index_categories_products_on_product_id"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -54,6 +103,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_25_115845) do
     t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_manufacturers_on_country_id"
     t.index ["name", "country_id"], name: "index_manufacturers_on_name_and_country_id", unique: true
+  end
+
+  create_table "materials", force: :cascade do |t|
   end
 
   create_table "mobility_string_translations", force: :cascade do |t|
@@ -81,20 +133,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_25_115845) do
     t.index ["translatable_id", "translatable_type", "locale", "key"], name: "index_mobility_text_translations_on_keys", unique: true
   end
 
-  create_table "order_items", force: :cascade do |t|
-    t.bigint "product_id"
-    t.bigint "order_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_order_items_on_order_id"
-    t.index ["product_id"], name: "index_order_items_on_product_id"
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "products", force: :cascade do |t|
     t.string "inventory_number", null: false
     t.bigint "manufacturer_id"
@@ -105,18 +143,30 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_25_115845) do
     t.boolean "drop_shipping_available", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "brand_id"
+    t.jsonb "specifications", default: {"ru"=>{}, "uk"=>{}}, null: false
+    t.integer "age_range"
+    t.integer "gender_target", default: 0, null: false
+    t.bigint "material_id"
+    t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["inventory_number"], name: "index_products_on_inventory_number", unique: true
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
+    t.index ["material_id"], name: "index_products_on_material_id"
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
-  create_table "trade_marks", force: :cascade do |t|
-    t.bigint "manufacturer_id"
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["manufacturer_id"], name: "index_trade_marks_on_manufacturer_id"
-    t.index ["name", "manufacturer_id"], name: "index_trade_marks_on_name_and_manufacturer_id", unique: true
+  create_table "products_skills", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "skill_id"
+    t.index ["product_id"], name: "index_products_skills_on_product_id"
+    t.index ["skill_id"], name: "index_products_skills_on_skill_id"
   end
 
+  create_table "skills", force: :cascade do |t|
+  end
+
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "products", "brands"
+  add_foreign_key "products", "materials"
 end

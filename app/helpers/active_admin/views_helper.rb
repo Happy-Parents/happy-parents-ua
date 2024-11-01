@@ -22,15 +22,5 @@ module ActiveAdmin
         [enum_translation(model, enum, key), key]
       end
     end
-
-    def formatted_price_input(entity)
-      return form_input_price_format(entity.price) if entity.product
-
-      form_input_price_format(Money.new(0))
-    end
-
-    def form_input_price_format(money_object)
-      number_with_precision(money_object, precision: 2, delimiter: ' ', separator: '.')
-    end
   end
 end

@@ -5,21 +5,33 @@
 # Table name: products
 #
 #  id                      :bigint           not null, primary key
+#  age_range               :integer
 #  drop_shipping_available :boolean          default(FALSE), not null
+#  gender_target           :integer          default("both"), not null
 #  inventory_number        :string           not null
 #  price_cents             :integer          not null
 #  published               :boolean          default(FALSE), not null
 #  slug                    :string           not null
+#  specifications          :jsonb            not null
 #  stock_balance           :integer          not null
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
+#  brand_id                :bigint
 #  manufacturer_id         :bigint
+#  material_id             :bigint
 #
 # Indexes
 #
+#  index_products_on_brand_id          (brand_id)
 #  index_products_on_inventory_number  (inventory_number) UNIQUE
 #  index_products_on_manufacturer_id   (manufacturer_id)
+#  index_products_on_material_id       (material_id)
 #  index_products_on_slug              (slug) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (brand_id => brands.id)
+#  fk_rails_...  (material_id => materials.id)
 #
 require 'rails_helper'
 
@@ -30,13 +42,23 @@ RSpec.describe Product do
   let(:stock_balance) { rand(0..2) }
 
   describe 'associations' do
-    it { is_expected.to belong_to(:manufacturer).optional }
+    %i[manufacturer brand material].each do |entity|
+      it { is_expected.to belong_to(entity).optional }
+    end
+
+    %i[categories skills].each do |entity|
+      it { is_expected.to have_and_belong_to_many(entity) }
+    end
   end
 
   describe 'validations' do
     %i[
       name_uk
       name_ru
+      preview_uk
+      preview_ru
+      description_uk
+      description_ru
       slug
       price_cents
       stock_balance
@@ -71,6 +93,9 @@ RSpec.describe Product do
       end
     end
   end
+
+  it { is_expected.to define_enum_for(:age_range).with_values([:baby, '1-3', '3-5', '5-7', '7-14', '14+']) }
+  it { is_expected.to define_enum_for(:gender_target).with_values(%i[both boys girls]) }
 
   describe 'instance methods' do
     describe '#in_stock?' do
